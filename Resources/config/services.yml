@@ -1,0 +1,33 @@
+parameters:
+    
+services:
+    form.type.skscms_protecedinput:
+            class: SKCMS\AdminBundle\Form\ProtectedInputType
+            tags:
+                - { name: form.type, alias: skscms_protecedinput }
+    form.type.skscms_datetime:
+            class: SKCMS\AdminBundle\Form\DatetimeType
+            tags:
+                - { name: form.type, alias: skscms_datetime }
+                
+    
+    skcms_core.form.type.skimage:
+        class: SKCMS\CoreBundle\Form\SKImageType
+        tags:
+            - { name: form.type, alias: skimage }
+    skcms_core.form.type.skimagegallery:
+        class: SKCMS\CoreBundle\Form\SKImageGalleryType
+        tags:
+            - { name: form.type, alias: skimagegallery }
+            
+    skcms_admin.topbar.viewer:
+        class: SKCMS\AdminBundle\AdminTopBar\TopBarViewer
+        arguments: [@service_container]
+    skcms_admin.topbar.listener:
+        class: SKCMS\AdminBundle\AdminTopBar\TopBarListener
+        arguments: [@skcms_admin.topbar.viewer, @service_container]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: processTopBar }
+            - { name: kernel.event_listener, event: kernel.controller, method: controllerCall }
+        
+    

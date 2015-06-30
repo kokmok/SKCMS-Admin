@@ -1,0 +1,10 @@
+{%extends "SKCMSAdminBundle:Element/Template:edit.html.twig"%}
+	
+
+
+{%block submitters %}
+    {{parent()}}
+    {%if app.security.getToken().getUser() == entity%}
+        <a href="{{path('fos_user_change_password')}}" class="btn btn-danger">Change password</a>
+    {%endif%}
+{%endblock%}

@@ -1,0 +1,106 @@
+sk_admin_homepage:
+    pattern:  /
+    defaults: { _controller: SKCMSAdminBundle:Admin:index }
+    
+#---------------        MENU
+sk_admin_menulist:
+    pattern: /menu
+    defaults: { _controller: SKCMSAdminBundle:Menu:list}
+sk_admin_menuedit:
+    pattern: /menu/edit/{id}/{_locale}
+    defaults: { _controller: SKCMSAdminBundle:Menu:edit, id:null, _locale:%locale% }
+#    requirements:
+#        id: \d+
+sk_admin_menudelete:
+    pattern: /menu/delete/{id}
+    defaults: { _controller: SKCMSAdminBundle:Menu:delete}
+    
+
+sk_admin_entitylistlist:
+    pattern: /entity-list
+    defaults: { _controller: SKCMSAdminBundle:EntityList:list}
+sk_admin_entitylistedit:
+    pattern: /entity-list/edit/{id}
+    defaults: { _controller: SKCMSAdminBundle:EntityList:edit, id:null}
+sk_admin_entitylistdelete:
+    pattern: /entity-list/delete/{id}
+    defaults: { _controller: SKCMSAdminBundle:EntityList:delete}
+
+
+sk_admin_list:
+    pattern:  /list/{entity}/{page}
+    defaults: { _controller: SKCMSAdminBundle:List:index, page:1 }
+    requirements:
+        entity: ^([a-zA-Z0-9])+$
+sk_admin_edit:
+    pattern:  /{_locale}/edit/{entity}/{id}
+    defaults: { _controller: SKCMSAdminBundle:Edit:index, id:null   }
+    requirements:
+        locale: ^[a-zA-Z_]{2,4}$
+        entity: ^([a-zA-Z0-9])+$
+sk_admin_edit_push_up:
+    pattern:  /{_locale}/edit/push-up/{entity}/{id}
+    defaults: { _controller: SKCMSAdminBundle:Edit:pushUp }
+    requirements:
+        entity: ^([a-zA-Z0-9])+$
+sk_admin_edit_pull_down:
+    pattern:  /{_locale}/edit/pull-up/{entity}/{id}
+    defaults: { _controller: SKCMSAdminBundle:Edit:pullDown }
+    requirements:
+        entity: ^([a-zA-Z0-9])+$
+
+sk_admin_delete:
+    pattern:  /delete/{entity}/{id}
+    defaults: { _controller: SKCMSAdminBundle:Edit:delete}
+    
+sk_admin_contactlist:
+    pattern:  /contact/messages/{page}
+    defaults: { _controller: SKCMSAdminBundle:Contact:messages, page:1 }
+sk_admin_messageview:
+    pattern:  /contact/message/{id}
+    defaults: { _controller: SKCMSAdminBundle:Contact:messageView, page:1 }
+
+sk_admin_userlist:
+    pattern: /users
+    defaults: { _controller: SKCMSAdminBundle:User:list}
+sk_admin_useredit:
+    pattern: /user/{id}
+    defaults: { _controller: SKCMSAdminBundle:User:edit, id:null}
+
+sk_admin_invitationlist:
+    pattern: /invitations
+    defaults: { _controller: SKCMSAdminBundle:Invitation:list}
+sk_admin_invitationedit:
+    pattern: /invitation/{id}
+    defaults: { _controller: SKCMSAdminBundle:Invitation:edit, id:null}
+sk_admin_invitationdelete:
+    pattern: /invitation/delete/{id}
+    defaults: { _controller: SKCMSAdminBundle:Invitation:delete}
+
+sk_admin_pagetemplatelist:
+    pattern: /template/page
+    defaults: { _controller: SKCMSAdminBundle:PageTemplate:list}
+sk_admin_pagetemplateedit:
+    pattern: /template/page/edit/{id}
+    defaults: { _controller: SKCMSAdminBundle:PageTemplate:edit, id:null}
+sk_admin_pagetemplatedelete:
+    pattern: /template/page/delete/{id}
+    defaults: { _controller: SKCMSAdminBundle:PageTemplate:delete}
+
+sk_admin_entitylistlist:
+    pattern: /entity-list
+    defaults: { _controller: SKCMSAdminBundle:EntityList:list}
+sk_admin_entitylistedit:
+    pattern: /entity-list/edit/{id}
+    defaults: { _controller: SKCMSAdminBundle:EntityList:edit, id:null}
+sk_admin_entitylistdelete:
+    pattern: /entity-list/delete/{id}
+    defaults: { _controller: SKCMSAdminBundle:EntityList:delete}
+
+
+    
+sk_admin_contactinfos:
+    pattern: /contact-infos/{_locale}
+    defaults: {_controller: SKCMSAdminBundle:ContactInfo:main}
+    
+    

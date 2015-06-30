@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-mars-2015, 11:29:25
+    Author     : Jona
+*/
+
+/** Top Bar */
+i.fa{font-style: normal !important;}
+.navbar {border-radius: 0;background:#222;height:71px;margin-bottom:0;z-index:1000;}
+.navbar + div,.navbar + header,.navbar + section {z-index: 1;position:relative;}
+.navbar a{text-decoration: none !important;}
+.menuLink{color:#FFF !important;}
+.menuLink:hover{color:#ff5164 !important;}
+#userbox {margin-top:15px;border:1px solid #FFF;border-radius: 0;background:#333; }
+#userbox:hover, #userbox:focus, #userbox.focus {color: #fff;}
+#userbox{color:#FFF !important;color: #fff !important;
+    display: block;
+    padding: 5px 10px;}
+.skGrey {color:#333 !important;}
+/*{color:#FFF;}*/

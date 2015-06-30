@@ -1,0 +1,37 @@
+{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
+
+{%block header2 %}Messages Reçus{%endblock%}
+{%block headerRightLinks%}{%endblock%}
+{%block th %}
+    <th>Date</th>
+    {% for listProperty in entityParams.listProperties%}
+        <th>{{listProperty.beautyName|title}}</th>
+    {%endfor%}
+    <th>Status</th>
+    <th>Actions</th>
+{%endblock%}
+
+{%block tr %}
+
+        <td>{{entity.date|date('Y-m-d H:i:s')}}</td>
+    {% for listProperty in entityParams.listProperties%}
+
+        {% if listProperty.type=='string'%}
+        <td>{{attribute(entity,listProperty.dataName)}}</td>
+        {% elseif listProperty.type=='datetime'%}
+        <td>{{attribute(entity,listProperty.dataName)}}</td>
+        {%elseif listProperty.type=='image'%}
+        <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" /></td>
+        {%endif%}
+
+    {%endfor%}
+        <td class="contact-message-status {{entity.status}}">{{entity.status|upper}}</td>
+        <td class="right">
+            <a class="btn btn-success" href="{{path('sk_admin_messageview',{id:entity.id})}}">
+                    <i class="icon-zoom-in icon-white"></i>  
+                    View                                            
+            </a>
+        </td>
+
+{%endblock%}
+

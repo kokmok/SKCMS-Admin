@@ -1,0 +1,48 @@
+{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
+
+{#{%block adminContent%}#}
+
+{#<a href="{{path('sk_admin_edit',{entity:entityParams.name})}}" class="btn btn-large btn-primary">Créer {{entityParams.beautyName}}</a>#}
+
+{%block header2 %}{{entityParams.beautyName}} {{parent()}}{%endblock%}
+
+{%block th %}
+ <th>Username</th>
+    <th>Roles</th>
+{% for listProperty in entityParams.listProperties%}
+    <th>{{listProperty.beautyName|title}}</th>
+{%endfor%}                     
+{{parent()}}
+{%endblock%}
+
+{%block tr %}
+    <td>{{entity.username}}</td>
+    <td>{{entity.roles|join(',')}}</td>
+{% for listProperty in entityParams.listProperties%}
+    {% if listProperty.type=='string'%}
+    <td>{{attribute(entity,listProperty.dataName)}}</td>
+    {% elseif listProperty.type=='datetime'%}
+    <td>{{attribute(entity,listProperty.dataName)}}</td>
+    {%elseif listProperty.type=='image'%}
+    <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" /></td>
+    {%endif%}
+
+{%endfor%}
+    <td class="center">
+        <a class="btn btn-success" href="#">
+                <i class="icon-zoom-in icon-white"></i>  
+                View                                            
+        </a>
+        <a class="btn btn-info" href="{{path('sk_admin_useredit',{id:entity.id})}}">
+                <i class="icon-edit icon-white"></i>  
+                Edit                                            
+        </a>
+        <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_delete',{'entity':entityParams.name,id:entity.id})}}">
+                <i class="icon-trash icon-white"></i> 
+                Delete
+        </a>
+
+    </td>
+{%endblock%}
+
+{%block createLink %}{{path('sk_admin_useredit')}}{%endblock%}

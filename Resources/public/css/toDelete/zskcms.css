@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-déc.-2014, 22:08:11
+    Author     : Jona
+*/
+.big{font-size:30px;}
+.pink-btn:hover{color:#fff;background:#ff5164;}
+.indice-number{background: none repeat scroll 0 0 red;border-radius: 3px;    font-size: 9px;    padding: 0 2px;    position: absolute;    right: 15px;color:#fff;background:#ff5164;top:0;}
+.contact-message-status{color: #fff;font-weight: bold;text-align: center !important;}
+.contact-message-status.viewed{background: none !important;}
+.contact-message-status.new{background: none repeat scroll 0 0 #ff5164 !important;}
+.sorting_asc,.sorting_desc {position: relative;}
+.sorting_asc:after{
+    top:15px;
+    right:8px;
+    position: absolute;
+    content:"";
+    width:0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:5px solid #eee;}
+.sorting_desc:after{content:"";
+    top:15px;
+    right:8px;
+    position: absolute;
+    position: absolute;
+    width:0;
+    height:0;
+    border-right:5px solid transparent;
+    border-left:5px solid transparent;
+    border-top:5px solid #eee;}
+/*
+.box:after{
+    content:"";
+    width:0;
+    height:0;
+    border-right:20px solid transparent;
+    border-left:20px solid transparent;
+    border-top:20px solid green;
+}*/
+
+
+.skcms_contact_icon{position: absolute;top:-10px;left:-10px;}
+.semi-big {font-size:20px;}
+.padding-10 {padding:10px;}
+.absolute-top{position: absolute;top:-10px;left:0px;}
+a{color:#ff5164;}
+a:hover{color:#fff;text-decoration: none;}
+.alert-info {background-color: #aaa;border:none;color:#111;text-shadow: none;}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  /*box-shadow: 0 1px 1px #ff5164 inset;*/
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;*/
+  transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #ff5164;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #ff5164;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #ff5164;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #ff5164;
+}
+
+.skcms_disablable{float:left !important;}
+input:disabled{color:#999;}
+.skcms_ckfinder_popup_input{}

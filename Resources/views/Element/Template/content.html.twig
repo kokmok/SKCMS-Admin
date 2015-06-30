@@ -1,0 +1,23 @@
+{%extends "SKCMSAdminBundle::layout.html.twig"%}
+
+{%block adminContent%}
+
+
+<div class="row">		
+            <div class="box col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="box-header well" data-original-title>
+                            <h2 class="no-margin no-padding pull-left">{%block header2 %}List{%endblock%}</h2>
+                            {%block headerRightLinks%}
+                            
+                            {%endblock%}
+                            <div class="clearfix"></div>
+                    </div>
+                    <div class="box-content">
+                        {%block boxContent%}
+                           
+                        {%endblock%}
+                    </div>
+            </div><!--/span-->
+
+    </div><!--/row-->
+{%endblock%}

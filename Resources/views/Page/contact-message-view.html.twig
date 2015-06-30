@@ -1,0 +1,115 @@
+{%extends "SKCMSAdminBundle:Element/Template:content.html.twig"%}
+    
+{%block header2 %}Message Posté{%endblock%}
+
+
+{%block boxContent%}
+    <div class="innerContent semi-big padding-10">
+        <blockquote class="">
+        <p>{{message.message|nl2br}}</p>
+        <footer>le {{message.date.format('d/m/Y H:i')}} par {{message.email}}</footer>
+        </blockquote>
+    </div>
+    
+    {%if responses|length%}
+    <div class="innerContent semi-big padding-10">
+         <legend>Réponses</legend>
+        {% for reponse in responses%}
+            <blockquote>
+            <p> {{reponse.message|raw}}</p>
+            <footer>le {{reponse.date.format('d/m/Y H:i')}} par {{reponse.user.username}}</footer>
+            </blockquote>
+            
+        {%endfor%}
+        
+       
+    </div>
+    {%endif%}
+    
+    <div class="innerContent semi-big padding-10">
+        
+        {{form_errors(form)}}
+        <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+          <fieldset>
+                <legend>Répondre</legend>
+            {%for input in form.children%}
+                {%if '__token' in input.vars.id %}
+                    {{form_widget(input,{attr:{class:'col-md-12'}})}}
+                {%else %}
+                <div class="control-group row">
+                   {# <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                    {{form_label(input,null,{label_attr:{class:'control-label'} })}}
+                    </div>
+#}
+                  <div class="controls col-md-11 col-lg-11 col-sm-11 col-xs-12">
+                      {{form_widget(input,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+                  </div>
+                </div>
+                {%endif%}
+            {%endfor%}
+            <div class="form-actions row  col-md-11 col-lg-11 col-sm-11 col-xs-12  col-md-offset-1 col-lg-offset-1 col-sm-offset-1 ">
+                <button type="submit" class="btn pink-btn">Save changes</button>
+                <button type="reset" class="btn">Cancel</button>
+            </div>
+          </fieldset>
+        </form>  
+    </div>
+{%endblock%}
+	
+  {#  {%block adminContent%}
+	<div class="row-fluid sortable">
+	    <div class="box span12">
+	            <div class="box-header well" data-original-title>
+	                    <h2>Message Posté <small> le {{message.date.format('d/m/Y H:i:s')}} par {{message.email}}</small></h2>
+	                    
+	            </div>
+	            <div class="box-content">
+                        <div class="innerContent semi-big padding-10">
+                            <blockquote>
+                            
+                            <p><i class="fa fa-2x fa-quote-left "></i> {{message.message|nl2br}}</p>
+                            </blockquote>
+                        </div>
+                    </div>
+	            <div class="box-content">
+                        <legend>Réponses</legend>
+                        {% for reponse in responses%}
+                            <div class="innerContent semi-big padding-10">
+                                <h1 class="">le {{reponse.date.format('d/m/Y H:i:s')}}</h1>
+                                {{reponse.message|raw}}
+                            </div>
+                        {%endfor%}
+                    </div>
+	            <div class="box-content">
+	                {{form_errors(form)}}
+	                    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+	                      <fieldset>
+	                            <legend>Répondre</legend>
+	                        {%for input in form.children%}
+	                            {%if '__token' in input.vars.id %}
+	                                {{form_widget(input,{attr:{class:'col-sm-60'}})}}
+	                            {%else %}
+	                            <div class="control-group">
+	                                {{form_label(input,null,{label_attr:{class:'control-label'} })}}
+	
+	                              <div class="controls">
+	                                  {{form_widget(input,{attr:{class:'col-sm-60'}})}}
+	
+	                              </div>
+	                            </div>
+	                            {%endif%}
+	                        {%endfor%}
+	                            <div class="form-actions">
+	                              <button type="submit" class="btn pink-btn">Save changes</button>
+	                              <button type="reset" class="btn">Cancel</button>
+	                            </div>
+	                      </fieldset>
+	                    </form>   
+	
+	            </div>
+	    </div><!--/span-->
+	
+	    </div><!--/row-->
+	
+	
+	    {%endblock%}#}

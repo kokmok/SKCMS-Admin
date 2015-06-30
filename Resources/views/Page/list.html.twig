@@ -1,0 +1,116 @@
+{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
+
+{#{%block adminContent%}#}
+
+{#<a href="{{path('sk_admin_edit',{entity:entityParams.name})}}" class="btn btn-large btn-primary">Créer {{entityParams.beautyName}}</a>#}
+
+{%block header2 %}{{entityParams.beautyName}} {{parent()}}{%endblock%}
+
+{%block th %}
+{% for listProperty in entityParams.listProperties%}
+    <th style="width:100px;">{{listProperty.beautyName|title}}</th>
+{%endfor%}
+    <th>User</th>
+    <th>Update</th>
+    <th>Draft</th>                             
+{{parent()}}
+{%endblock%}
+
+{%block tr %}
+    {% for listProperty in entityParams.listProperties%}
+        {% if listProperty.type=='string'%}
+        <td>{{attribute(entity,listProperty.dataName)}}</td>
+        {% elseif listProperty.type=='datetime' or listProperty.type=='date'%}
+        <td>{{attribute(entity,listProperty.dataName)|date('Y-m-d')}}</td>
+        {%elseif listProperty.type=='image'%}
+        <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" class="listImage"/></td>
+        {%endif%}
+    {%endfor%}
+    <td>{{entity.userCreate.username}}</td>
+    <td>{{entity.updateDate|date('Y-m-d H:i:s')}}</td>
+    <td>{{entity.draft? 'Yes':'No'}}</td>
+    <td class="center">
+        <a class="btn btn-success" href="#">
+                <i class="icon-zoom-in icon-white"></i>  
+                View                                            
+        </a>
+        <a class="btn btn-info" href="{{path('sk_admin_edit',{'entity':entityParams.name,id:entity.id})}}">
+                <i class="icon-edit icon-white"></i>  
+                Edit                                            
+        </a>
+        <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_delete',{'entity':entityParams.name,id:entity.id})}}">
+                <i class="icon-trash icon-white"></i> 
+                Delete
+        </a>
+
+    </td>
+{%endblock%}
+
+{%block createLink %}{{path('sk_admin_edit',{entity:entityParams.name})}}{%endblock%}
+
+{#<div class="row-fluid sortable">		
+            <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                            <h2 class="no-margin no-padding pull-left">{{entityParams.beautyName}}</h2>
+                            <div class="box-icon pull-right">
+                                    <a href="{{path('sk_admin_edit',{entity:entityParams.name})}}" class="btn btn-round pink-btn "><i class="fa fa-plus"></i> ADD</a>
+                                    
+                            </div>
+                            <div class="clearfix"></div>
+                    </div>
+                    <div class="box-content">
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                              <thead>
+                                    <tr>
+                                    {% for listProperty in entityParams.listProperties%}
+                                        <th style="width:100px;">{{listProperty.beautyName|title}}</th>
+                                    {%endfor%}
+                                        <th>User</th>
+                                        <th>Update</th>
+                                        <th>Draft</th>
+                                        <th>Actions</th>
+                                    </tr>
+                              </thead>   
+                              <tbody>
+                                  {%for entity in entities%}
+                                    <tr>
+                                    {% for listProperty in entityParams.listProperties%}
+                                        {% if listProperty.type=='string'%}
+                                        <td>{{attribute(entity,listProperty.dataName)}}</td>
+                                        {% elseif listProperty.type=='datetime'%}
+                                        <td>{{attribute(entity,listProperty.dataName)}}</td>
+                                        {%elseif listProperty.type=='image'%}
+                                        <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" class="span12"/></td>
+                                        {%endif%}
+                                        
+                                    {%endfor%}
+                                        
+                                        <td>{{entity.userCreate.username}}</td>
+                                        <td>{{entity.updateDate|date('Y-m-d H:i:s')}}</td>
+                                        <td>{{entity.draft}}</td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                    <i class="icon-zoom-in icon-white"></i>  
+                                                    View                                            
+                                            </a>
+                                            <a class="btn btn-info" href="{{path('sk_admin_edit',{'entity':entityParams.name,id:entity.id})}}">
+                                                    <i class="icon-edit icon-white"></i>  
+                                                    Edit                                            
+                                            </a>
+                                            <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_delete',{'entity':entityParams.name,id:entity.id})}}">
+                                                    <i class="icon-trash icon-white"></i> 
+                                                    Delete
+                                            </a>
+                                        
+                                        </td>
+                                    </tr>
+                                        
+                                    {%endfor%}
+                                    
+                              </tbody>
+                      </table>            
+                    </div>
+            </div><!--/span-->
+
+    </div><!--/row-->
+{%endblock%}#}
