@@ -31,7 +31,8 @@
 
 "twig/twig":                        "*",
 
-"doctrine/doctrine-bundle":         "*"
+"doctrine/doctrine-bundle":         "*",
+"stof/doctrine-extensions-bundle": "~1.1@dev"
 
 },
 
