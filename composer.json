@@ -1,18 +1,19 @@
-{« name »: « skcms/AdminBundle-bundle »,
+{
+  "name": "skcms/AdminBundle-bundle",
 
-« type »: « symfony-bundle »,
+"type": "symfony-bundle",
 
-« description »: « Symfony Admin Bundle by SOLID-kiss »,
+"description": "Symfony Admin Bundle by SOLID-kiss",
 
-« keywords »: [],
+"keywords": [],
 
-« license »: « GPL-3.0+ »,
+"license": "GPL-3.0+",
 
-« authors »: [
+"authors": [
 
 {
 
-"name":   "SOLID-kiss",
+"name":   "Jonathan Cambier",
 
 "email": "jona@solid-kiss.be",
 
@@ -22,26 +23,26 @@
 
 ],
 
-« require »: {
+"require": {
 
-« php »: « >=5.3.2″,
+"php": ">=5.3.2",
 
-« symfony/framework-bundle »:         « >=2.3-dev »,
+"symfony/framework-bundle":         ">=2.3-dev",
 
-« twig/twig »:                         »* »,
+"twig/twig":                        "*",
 
-« doctrine/doctrine-bundle »:         « * »
-
-},
-
-« autoload »: {
-
-« psr-0″: { « SKCMS\\Bundle\\AdminBundle »:   «  » }
+"doctrine/doctrine-bundle":         "*"
 
 },
 
-« target-dir »: « SKCMS/Bundle/AdminBundle »,
+"autoload": {
 
-« minimum-stability »:   « dev »
+"psr-0": { "SKCMS\\Bundle\\AdminBundle":   "" }
+
+},
+
+"target-dir": "SKCMS/Bundle/AdminBundle",
+
+"minimum-stability":   "dev"
 
 }
