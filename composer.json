@@ -38,11 +38,11 @@
 
 "autoload": {
 
-"psr-0": { "SKCMS\\Bundle\\AdminBundle":   "" }
+"psr-0": { "SKCMS\\AdminBundle":   "" }
 
 },
 
-"target-dir": "SKCMS/Bundle/AdminBundle",
+"target-dir": "SKCMS/AdminBundle",
 
 "minimum-stability":   "dev"
 
