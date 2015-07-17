@@ -26,7 +26,7 @@
         <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" class="listImage"/></td>
         {%endif%}
     {%endfor%}
-    <td>{{entity.userCreate.username}}</td>
+    <td>{%if entity.userCreate%}{{entity.userCreate.username}}{%endif%}</td>
     <td>{{entity.updateDate|date('Y-m-d H:i:s')}}</td>
     <td>{{entity.draft? 'Yes':'No'}}</td>
     <td class="center">
