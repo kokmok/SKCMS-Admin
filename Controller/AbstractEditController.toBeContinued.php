@@ -4,20 +4,26 @@ namespace SKCMS\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class EditController extends Controller
+abstract class AbstractEditController extends Controller
 {
-    public function indexAction($entity,$id,$_locale)
+    
+    const REPOSITORY = '';
+    const ENTITY = '';
+    const FORM = '';
+    const PATH = '';
+    const TEMPLATE = '';
+    
+    private $locale;
+    
+    
+    public function editAction($entityClass,$repository,$formClass,$locale,$id = null,$sort = null,$formParams = [])
     {
-        $locale = $_locale;
+        $user = $this->getUser();
         $request = $this->get('request');
         
-        $user = $this->getUser();
-        $entitiesParams = $this->container->getParameter('skcms_admin.entities');
-        
-        $entityParams = $entitiesParams[$entity];
-        
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        
+        $repo = $em->getRepository($repository);
        
         if ($id!==null)
         {
@@ -26,7 +32,7 @@ class EditController extends Controller
         }
         else
         {
-            $entity = new $entityParams['class'];
+            $entity = new $entityClass;
             $entity->setUserCreate($user);
             
         }
@@ -35,29 +41,25 @@ class EditController extends Controller
         $entity->setUpdateDate(new \DateTime());
         $entity->setTranslatableLocale($locale);
         
-//        die($entity->getPicture()->getPicture().'te');
+
         
-//        dump($entity);
-//        die();
-        
-        
-        if (isset($entityParams['formParams']) && count($entityParams['formParams']))
+        if (isset($formParams) && count($formParams))
         {
-            if (isset($entityParams['formParams']['user']) && $entityParams['formParams']['user'] == 'current')
+            if (isset($formParams['user']) && $formParams['user'] == 'current')
             {
-                $form = $this->createForm(new $entityParams['form']($user),$entity);
+                $form = $this->createForm(new $formClass($user),$entity);
             }
-            if (isset($entityParams['formParams']['method']))
+            if (isset($formParams['method']))
             {
-                $class = new $entityParams['formParams']['class'];
-                $formParams = call_user_func( array( $class, $entityParams['formParams']['method'] ) );
+                $class = new $formParams['class'];
+                $formParams = call_user_func( array( $class, $formParams['method'] ) );
 //                die('t'.$formParams);
-                $form = $this->createForm(new $entityParams['form']($formParams),$entity);
+                $form = $this->createForm(new $formClass($formParams),$entity);
             }
         }
         else
         {
-            $form = $this->createForm(new $entityParams['form'],$entity);
+            $form = $this->createForm(new $formClass,$entity);
         }
         
         
@@ -69,29 +71,33 @@ class EditController extends Controller
           
             if ($form->isValid()) 
             {
+              
                 
-                if (is_subclass_of($entity,'\SKCMS\CoreBundle\Entity\SkBaseEntity'))
+                if (isset($sort) && $sort!="none" && $entity->getId() === null)
                 {
-                    $newPosition = $repo->findLastSortableIndex('position')+1;
-                    $entity->setPosition($newPosition);
+                    
+                    $newPosition = $repo->findLastSortableIndex($sort)+1;
+//                    call_user_method('set'.ucfirst($entityParams['sort']), $this,[$newPosition]);
+                    call_user_func([$entity,'set'.ucfirst($sort)],$newPosition);
                 }
                
               $em->persist($entity);
               $em->flush();
-             
+              
               
               
               $this->get('session')->getFlashBag()->add(
                 'success',
-                $entityParams['beautyName'].' Edited :)'
+                'Entity Edited :)'
                 );
               
                 if ($request->request->get('stay_here') !== null)
                 {
-                    $url = $this->generateUrl('sk_admin_edit',['entity'=>$entityParams['name'],'_locale'=>$locale,'id'=>$entity->getId()]);
+                    $url = $this->generateUrl($request->get('_route'),array_merge($request->get('_route_params'),['id'=>$entity->getId()]));
                 }
                 elseif ($request->request->get('add_new') !== null)
                 {
+                    $params = $request->get('_route_params');
                     $url = $this->generateUrl('sk_admin_edit',['entity'=>$entityParams['name'],'_locale'=>$this->container->getParameter('locale')]);
                 }
                 else
@@ -115,6 +121,27 @@ class EditController extends Controller
         
         
         return $this->render('SKCMSAdminBundle:Page:edit.html.twig',['entityParams'=>$entityParams,'entity'=>$entity,'form'=>$form->createView(),'siteinfo'=>$siteInfo]);
+    }
+    
+    public function indexAction($entity,$id,$_locale)
+    {
+        $locale = $_locale;
+        $request = $this->get('request');
+        
+        $user = $this->getUser();
+        $entitiesParams = $this->container->getParameter('skcms_admin.entities');
+        
+        $entityParams = $entitiesParams[$entity];
+        
+        
+        $repository = $entityParams['bundle'].'Bundle:'.$entity;
+        $entityClass = $entityParams['class'];
+        $formClass = $entityParams['form'];
+        $formParams = $entityParams['formParams'];
+        
+       
+        $em = $this->getDoctrine()->getManager();
+       
     }
     
     public function deleteAction($entity,$id)

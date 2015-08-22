@@ -1,0 +1,84 @@
+{%extends "SKCMSAdminBundle:Element/Template:edit.html.twig"%}
+
+{%block headerRightLinks %}
+{%endblock%}
+{%block boxContent%}
+    <section class="col-md-6 col-sm-6 col-lg-6 col-xs-12 skSection">
+        <h1>Résumé de la commande</h1>
+        <h2>Informations</h2>
+        <form action="" method="post">
+            <p><strong>Date : </strong>{{order.date|date('d-m-Y')}}</p>
+            <p><strong>Livraison : </strong>{{order.delivery.name}} : {{order.deliveryFee}} €</p>
+            <p><strong>Montant HTVA: </strong><input type="text" id="{{form.feeHTVA.vars.id}}" name="{{form.feeHTVA.vars.full_name}}" value="{{form.feeHTVA.vars.value}}" /> €</p>
+            <p><strong>Montant TVAC: </strong><input type="text" id="{{form.feeTVAC.vars.id}}" name="{{form.feeTVAC.vars.full_name}}" value="{{form.feeTVAC.vars.value}}" /> €</p>
+            <p><strong>Statut: </strong>{{form_widget(form.status)}}</p>
+            {{form_widget(form._token)}}
+            <input type="submit" value="mettre à jour" />
+        </form>
+        <h2>Produits</h2>
+        <table class="table table-stripped">
+            <thead>
+                <th>Produit</th>
+                <th>Commentaire</th>
+                <th>Quantité</th>
+                <th>Promotion</th>
+                <th>Prix HTVA</th>
+            </thead>
+            <tbody>
+                {%for cartProduct in order.cart.products%}
+                <tr>
+                    <td>{{cartProduct.product.title}}</td>
+                    <td>{{cartProduct.comment}}</td>
+                    <td>{{cartProduct.quantity}}</td>
+                    <td>{%if cartProduct.product.promotion is not null%}{{cartProduct.product.promotion.name}}{%endif%}</td>
+                    <td>{{cartProduct.totalHTVA}}</td>
+                </tr>
+                {%endfor%}
+                
+            </tbody>
+        </table>
+        
+        </ul>
+    </section>
+    <section class="col-md-6 col-sm-6 col-lg-6 col-xs-12 skSection">
+        <h1>Client</h1>
+        <h2>Nom :</h2>
+        <p>{{order.user.firstName}} {{order.user.lastName}}</p>
+        <h2>Email :</h2>
+        <p><a href="mailto:{{order.user.email}}">{{order.user.email}}</a></p>
+        {%if order.deliveryAddress is not null%}
+        <h2>Adresse de livraison :</h2>
+        <p>{{order.deliveryAddress.streetNumber}}, {{order.deliveryAddress.street}}
+        <br />
+        {{order.deliveryAddress.zip}} {{order.deliveryAddress.city}}
+        </p>
+        {%endif%}
+        {%if order.billingAddress is not null%}
+        <h2>Adresse de Facturation :</h2>
+        <p>{{order.billingAddress.streetNumber}}, {{order.billingAddress.street}}
+        <br />
+        {{order.billingAddress.zip}} {{order.billingAddress.city}}
+        </p>
+        {%endif%}
+        <p></p>
+    </section>
+        <section class="col-md-6 col-sm-6 col-lg-6 col-xs-12 skSection">
+            <h1>Historique des statuts</h1>
+            <table class="table table-stripped">
+            <thead>
+                <th>Date</th>
+                <th>Statut</th>
+            </thead>
+            <tbody>
+                {%for statusLog in order.statusLogs%}
+                <tr style="background:{{statusLog.status.color}};">
+                    <td>{{statusLog.date|date('d-m-Y H:i:s')}}</td>
+                    <td>{{statusLog.status.name}}</td>
+                    
+                </tr>
+                {%endfor%}
+                
+            </tbody>
+        </table>
+        </section>
+{%endblock%}

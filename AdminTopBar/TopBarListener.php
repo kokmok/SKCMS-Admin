@@ -69,7 +69,11 @@ class TopBarListener {
 
                 $translationRepo = $this->container->get('doctrine')->getManager()->getRepository('SKCMS\CoreBundle\Entity\Translation\EntityTranslation');
                 $entity = $translationRepo->findObjectBySlug($slug,$this->container->get('request')->getLocale());
-
+                
+                if (null == $entity)
+                {
+                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+                }
                 $entityType = substr($entity->getObjectClass(),strrpos($entity->getObjectClass(),'\\')+1);
 
                 $this->editPath = $this->container->get('router')->generate('sk_admin_edit',['entity'=>$entityType,'id'=>$entity->getForeignKey()]);

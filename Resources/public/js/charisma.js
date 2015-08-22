@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    console.log('select');
+        
+        
         
                 
         $('select')
@@ -26,7 +27,7 @@ $(document).ready(function(){
         addPrototypeForm();
         sortableLinks();
         dateTimePicker();
-        
+        $('.colorpicker').colorPicker({cssAddon:'.cp-color-picker{z-index:3000;}'});
 	
 	
 	
@@ -90,6 +91,7 @@ function launchCKBrowser(e)
             config.basePath = $(e.target).data('basepath');            
             config.connectorPath = $(e.target).data('connectorpath'); 
             config.selectActionData =$(e.target).prev('input').attr('id');
+            
             var finder = new CKFinder(config);
             finder.selectActionFunction = SetFileField;
             finder.popup();
@@ -98,8 +100,14 @@ function launchCKBrowser(e)
 
 function SetFileField( fileUrl, data )
 {
-    $('#'+data["selectActionData"]).val(fileUrl);
+    
+    console.log('selected');
+    console.log(data);
+    var basePath = $('#'+data["selectActionData"]).next('input').attr('data-basepath');
+    
+    
     $('#'+data["selectActionData"]).prev('img').attr('src',fileUrl);
+    $('#'+data["selectActionData"]).val(fileUrl.replace(basePath,''));
     
 }
 

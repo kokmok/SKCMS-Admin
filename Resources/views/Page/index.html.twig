@@ -32,15 +32,19 @@
 
     </div><!--/row-->
 {#    <div class="container">#}
-    {% if entityParams.enabled%}
+    {% if contactParams.enabled%}
+        {%set sizeClass = ' col-lg-12 col-md-12 col-sm-12 col-xs-12'%}
+        {%if eshopParams.enabled%}
+        {%set sizeClass = ' col-lg-6 col-md-6 col-sm-6 col-xs-6'%}
+        {%endif%}
     <div class="row-fluid margin-top-50">
-        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="{{sizeClass}}">
         <h3>Les derniers messages postés</h3>
         <table class="table table-striped table-bordered bootstrap-datatable">
         <thead>
               <tr>
                   <th>Date</th>
-                    {% for listProperty in entityParams.messageEntity.listProperties%}
+                    {% for listProperty in contactParams.messageEntity.listProperties%}
                         <th>{{listProperty.beautyName|title}}</th>
                     {%endfor%}
                     <th>Status</th>
@@ -52,7 +56,7 @@
 
               <tr>
                    <td>{{entity.date|date('Y-m-d H:i:s')}}</td>
-                    {% for listProperty in entityParams.messageEntity.listProperties%}
+                    {% for listProperty in contactParams.messageEntity.listProperties%}
 
                         {% if listProperty.type=='string'%}
                         <td>{{attribute(entity,listProperty.dataName)}}</td>
@@ -79,6 +83,50 @@
         
     </div>
         {%endif%}
+        
+{#        ESHOP#}
+    {% if eshopParams.enabled%}
+        {%set sizeClass = ' col-lg-12 col-md-12 col-sm-12 col-xs-12'%}
+        {%if contactParams.enabled%}
+        {%set sizeClass = ' col-lg-6 col-md-6 col-sm-6 col-xs-6'%}
+        {%endif%}
+    <div class="row-fluid margin-top-50">
+        <div class="{{sizeClass}}">
+        <h3>Les dernieres commandes</h3>
+        <table class="table table-striped table-bordered bootstrap-datatable">
+        <thead>
+              <tr>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Action</th>
+              </tr>
+        </thead>   
+        <tbody>
+            {%for entity in orders%}
+
+              <tr>
+                   <td>{{entity.date|date('Y-m-d H:i:s')}}</td>
+                        <td>{{entity.user.email}}</td>
+                        <td>{{entity.feeHTVA}} €</td>
+                        <td class="contact-message-status" style="background:{{entity.status.color}};">{{entity.status.name}}</td>
+                        <td class="right">
+                            <a class="btn btn-success" href="{{path('sk_admin_messageview',{id:entity.id})}}">
+                                    <i class="icon-zoom-in icon-white"></i>  
+                                    View                                            
+                            </a>
+                        </td>
+                </tr>
+
+              {%endfor%}
+
+        </tbody>
+      </table>   
+        
+    </div>
+        {%endif%}
+
     </div>
 {#    </div>#}
 {%endblock%}

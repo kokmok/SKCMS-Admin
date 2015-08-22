@@ -30,14 +30,15 @@ class TopBarViewer
 //        die($adminTopBar);
 //        die();
         
-        if (!preg_match('#col-md#',$htmlContent)) //Bootsrap Fix
-        {
+//        if (!preg_match('#col-md#',$htmlContent)) //Bootsrap Fix
+//        {
             $bootstrap = $this->getBootsrap();
             $htmlContent = preg_replace('#(<head>)#','$1'.$bootstrap,$htmlContent);
             
-            $bootsrapJS = '<script type="text/javascript" src="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/js/bootstrap.min.js').'"></script>';
-            $htmlContent = preg_replace('#(</body>)#',$bootsrapJS.'$1',$htmlContent);
-        }
+//            $bootsrapJS = '<script type="text/javascript" src="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/js/bootstrap.min.js').'"></script>';
+            $bootsrapJS = '<script type="text/javascript" src="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/js/topBar.js').'"></script>';
+            $htmlContent = preg_replace('#(<\/body>)#',$bootsrapJS.'$1',$htmlContent);
+//        }
         
         
         
@@ -56,7 +57,7 @@ class TopBarViewer
         $bootrap .= '<link rel="stylesheet" href="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/css/bootstrap-theme.min.css').'" />';
         $bootrap .= '<link rel="stylesheet" href="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/css/font-awesome.min.css').'" />';
         $bootrap .= '<link rel="stylesheet" href="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/css/topBar.css').'" />';
-        $bootrap .= '<link rel="stylesheet" href="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/css/zskcms.css').'" />';
+//        $bootrap .= '<link rel="stylesheet" href="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/css/zskcms.css').'" />';
         
         return $bootrap;
     }

@@ -61,8 +61,14 @@ class AdminController extends Controller
             $contactMessages = [];
         }
 
-
-        return $this->render('SKCMSAdminBundle:Page:index.html.twig',['sessionByMonth'=>  array_reverse($sessionsByMonth),'lastMonthViews'=>$lastMonthViews,'totalLastMonthViews'=>$totalCount,'contactMessages'=>$contactMessages,'entityParams'=>$contactParams]);
+        $eshopParams = $modulesParams['eshop'];
+        if ($eshopParams['enabled'])
+        {
+            $orderRepo = $this->getDoctrine()->getManager()->getRepository(('SKCMSShopBundle:Order'));
+            $orders = $orderRepo->findBy(['conditionsAccepted'=>true],['date'=>'DESC'],10,0);
+        }
+            
+        return $this->render('SKCMSAdminBundle:Page:index.html.twig',['sessionByMonth'=>  array_reverse($sessionsByMonth),'lastMonthViews'=>$lastMonthViews,'totalLastMonthViews'=>$totalCount,'contactMessages'=>$contactMessages,'contactParams'=>$contactParams,'orders'=>$orders,'eshopParams'=>$eshopParams]);
     }
 
     public function leftNavAction()

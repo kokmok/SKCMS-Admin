@@ -7,14 +7,38 @@ and open the template in the editor.
     Created on : 02-déc.-2014, 22:08:11
     Author     : Jona
 */
+.nav > li > a:hover, .nav > li > a:focus,.nav-tabs > li.active  {
+    background-color: #222;
+    text-decoration: none;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #222;
+    
+    border-image: none;
+    border-style: solid;
+    border-width: 0px;
+    color: #555;
+    cursor: default;
+}
+
+.box-header {border-bottom:1px solid #999;padding-bottom:15px;margin-bottom:45px;}
+
+.dataTables_filter {float:right;font-size:1.3em;}
+.dataTables_length {font-size:1.3em;}
+
+
 .well,.btn {border-radius:0;}
 .big{font-size:30px;}
-.pink-btn{color:#fff;background:#ff5164;}
-.pink-btn:hover{color:#ff5164;background:#fff;border:1px solid #ff5164;}
+.pink-btn{color:#fff;background:#00DAFF;}
+.pink-btn:hover{color:#00DAFF;background:#fff;border:1px solid #ff5164;}
 .indice-number{background: none repeat scroll 0 0 red;border-radius: 3px;    font-size: 9px;    padding: 0 2px;    position: absolute;color:#fff;background:#ff5164;right: 66px;top: 10px;}
 .contact-message-status{color: #fff;font-weight: bold;text-align: center !important;}
 .contact-message-status.viewed{background: none !important;}
-.contact-message-status.new{background: none repeat scroll 0 0 #ff5164 !important;}
+.contact-message-status.new{background: none repeat scroll 0 0 #00DAFF !important;}
 .sorting_asc,.sorting_desc {position: relative;}
 .sorting_asc:after{
     top:15px;
@@ -51,7 +75,7 @@ and open the template in the editor.
 .semi-big {font-size:20px;}
 .padding-10 {padding:10px;}
 .absolute-top{position: absolute;top:-10px;left:0px;}
-a{color:#ff5164;}
+a{color:#00DAFF;}
 a:hover{color:#fff;text-decoration: none;}
 .alert-info {background-color: #aaa;border:none;color:#111;text-shadow: none;}
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
@@ -103,8 +127,9 @@ input:disabled{color:#999;}
 .nav-tabs:last-child{border:0;}
 .nav-header {font-weight: bold;padding-left: 10px;}
 .nav-tabs > li > a {border-radius: 0;color:#555;}
-.main-menu-span a:hover {color:#ff5164;}
-.nav-tabs > li.active > a  {color:#ff5164;}
+.main-menu-span a:hover {color:#00DAFF;}
+.nav-tabs > li.active > a {color:#00DAFF;}
+
 
 
 /*List*/
@@ -235,6 +260,7 @@ margin-right: 10px;
 }
 
 .controls label {display:none;}
+.controls div label:first-child {display:inline;}
 
 .collection-control{border: 1px solid #ccc;    border-radius: 4px;    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;padding-top: 15px;padding-bottom:15px;}
 .collection-control>div{padding: 10px 0;}
@@ -243,7 +269,7 @@ margin-right: 10px;
 .delete_entity_link {display:block;float:right;}
 
 
-#main-admin {margin-top:20px;}
+#main-admin {margin-top:60px;}
 div.form-control {height:auto;}
 
 .margin-top-50 {margin-top:50px;}

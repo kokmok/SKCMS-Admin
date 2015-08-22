@@ -64,14 +64,23 @@ class MenuController extends Controller
         $entities = [];
         foreach ($entitiesParams as $entityName => $entityParams)
         {
-            $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entityName); 
-            $subEntities = $repo->findAll();
+           
+            if (array_key_exists( 'skcmsMenuList',$entityParams) && $entityParams['skcmsMenuList'])
+            {
+                $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entityName); 
+                $subEntities = $repo->findAll();
+                $entities[$entityName] = $subEntities;
+            }
             
-            $entities[$entityName] = $subEntities;
+            
         }
         
         
+        
         $form = $this->createForm(new MenuElementType($entities),$menu);
+        
+        
+        
         $request = $this->get('request');
         
         if ($request->getMethod() == 'POST') 

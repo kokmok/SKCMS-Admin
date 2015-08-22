@@ -1,43 +1,36 @@
 <!-- topbar starts -->
-<div class="navbar hidden-xs hidden-sm">
+<div id="sk-topBar" class="hidden-xs hidden-sm">
         <div class="navbar-inner">
                 <div class="skcontainer-fluid">
-                       {# <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                        </a>#}
-                        
-
-                       
-
-                        <!-- user dropdown starts -->
-                        <div class="btn-group pull-right" >
-                                <a class="btn dropdown-toggle" id="userbox" data-toggle="dropdown" href="#">
+                      <!-- user dropdown starts -->
+                        <div class="btn-group pull-right skcol-md-1 sk-col-sm-1 sk-col-lg-1" >
+                                <a class="btn sk-dropdown" id="userbox" data-target="dropdown-user" href="#">
                                         <i class="fa fa-user"></i><span class="hidden-phone"> {{app.user.username}}</span>
                                         <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul id="dropdown-user" class="sk-dropdown-menu">
                                         <li><a href="{{path('sk_admin_useredit',{id:app.user.id})}}">{{'Profil'|trans()}}</a></li>
                                         <li class="divider"></li>
                                         <li><a href="{{path('fos_user_security_logout')}}">{{'Deconnexion'|trans()}}</a></li>
                                 </ul>
                         </div>
                         <!-- user dropdown ends -->
-
-                        <div class="top-nav skcol-md-10 skcol-sm-10 skcol-xs-10 skcol-lg-10">
-                                <ul class="nav">
-                                        <li class="skcol-md-2 skcol-sm-2 skcol-xs-2 skcol-lg-2"><a href="{{path('sk_admin_homepage')}}" class="menuLink"><span class="semi-big"><strong>SOLID</strong>KISS </span><br /><span class="small">Admin</span></a></li>
-                                        <li class="skcol-md-2 skcol-sm-2 skcol-xs-2 skcol-lg-2 text-center"><a href="{{websitePath}}" class="menuLink"><i class="fa fa-eye big"></i><br />view site</a></li>
-                                        <li class="skcol-md-2 skcol-sm-2 skcol-xs-2 skcol-lg-2 text-center"><a href="#" data-toggle="dropdown" class="menuLink"><i class="fa fa-paint-brush big"></i><br />Create</a>
-                                                <ul class="dropdown-menu">
+                        <div class="skcol-md-2 sk-col-sm-2 sk-col-lg-2">
+                            <a href="{{path('sk_admin_homepage')}}" class="menuLink"><span class="semi-big"><strong>SOLID</strong>KISS </span></a>
+                        </div>
+                        <div class="top-nav skcol-md-9 skcol-sm-9 skcol-xs-9 skcol-lg-9">
+                                <ul id="sk-topBarNav">
+                                        <li class=""><a href="{{websitePath}}" class="menuLink"><i class="fa fa-eye"></i> view site</a></li>
+                                        <li class="sk-dropdown" data-target="dropdown-create"><a href="#" data-toggle="dropdown" class="menuLink"><i class="fa fa-paint-brush"></i> Create</a>
+                                                <ul class="sk-dropdown-menu" id="dropdown-create">
         {#                                            {% for group in menuGroups%}#}
                                                        {# <li class="nav-header hidden-tablet">{{group.name}}</li>
                                                         <li class="divider"></li>#}
                                                        {% for elementType in entititesType%}
         {#                                                   {% if elementType.menuGroup == group.id%}#}
         {#                                                   <li>{{elementType}}</li>#}
-                                                               <li><a class="skGrey" href="{{path('sk_admin_edit',{'entity':elementType.name,'_locale':app.request.locale})}}"><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
+                                                               <li><a class="" href="{{path('sk_admin_edit',{'entity':elementType.name,'_locale':app.request.locale})}}"><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
+{#                                                               <li class="divider"></li>#}
         {#                                                   {%endif%}#}
                                                        {%endfor%}
         {#                                           {%endfor%}#}
@@ -48,11 +41,11 @@
                                         </li>
                                         
                                     {%if editPath is not null%}
-                                        <li class="skcol-md-2 skcol-sm-2 skcol-xs-2 skcol-lg-2 text-center"><a href="{{editPath}}" class="menuLink"><i class="fa fa-edit big"></i><br />Edit Entity</a></li>
+                                        <li class=""><a href="{{editPath}}" class="menuLink"><i class="fa fa-edit"></i> Edit Entity</a></li>
                                     {%endif%}
                                     
                                     {%if modules.contact.enabled == true %}
-                                        <li class="skcol-md-2 skcol-sm-2 skcol-xs-2 skcol-lg-2 text-center"><a href="{{path('sk_admin_contactlist')}}" class="menuLink"><i class="fa fa-envelope big"></i><br />Contact ({{newContactMessageNumber}})</a></li>
+                                        <li class=""><a href="{{path('sk_admin_contactlist')}}" class="menuLink"><i class="fa fa-envelope"></i> Contact ({{newContactMessageNumber}})</a></li>
                                     {%endif%}
 {# <li>
                                                 <form class="navbar-search pull-left">

@@ -1,6 +1,15 @@
 <!-- left menu starts -->
 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-12 main-menu-span">
-        <div class="well nav-collapse sidebar-nav">
+        <div class="nav-collapse sidebar-nav">
+            {%if modules.eshop.enabled%}
+            <ul class="nav nav-tabs nav-stacked main-menu">
+                    <li class="nav-header hidden-tablet">Commandes</li>
+                    <li><a class="ajax-link" href="{{path('sk_admin_eshoplist')}}"><i class="fa fa-euro"></i><span class="hidden-tablet"> Toutes les commandes</span></a></li>
+
+
+            </ul>
+            {%endif%}
+            
                 <ul class="nav nav-tabs nav-stacked main-menu">
                     {% for group in menuGroups%}
                          <li class="nav-header hidden-tablet">{{group.name}}</li>
@@ -19,6 +28,7 @@
                 <ul class="nav nav-tabs nav-stacked main-menu">
                         <li class="nav-header hidden-tablet">Miscellaneous Informations</li>
                         <li><a class="ajax-link" href="{{path('sk_admin_contactinfos')}}"><i class="fa fa-info"></i><span class="hidden-tablet"> Contact Informations</span></a></li>
+                        
                             
                 </ul>
                 {%if modules.contact.enabled == true %}

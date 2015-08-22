@@ -41,6 +41,12 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->arrayNode('modules')
                         ->children()
+                            //ESHOP
+                            ->arrayNode('eshop')
+                                ->children()
+                                    ->booleanNode('enabled')->defaultValue(false)->end()
+                                ->end()
+                            ->end()
                             //CONTACT
                             ->arrayNode('contact')
                                 ->children()
@@ -107,6 +113,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('form')->end()
                                 ->scalarNode('type')->defaultValue('crud')->end()
                                 ->scalarNode('menuGroup')->end()
+                                ->scalarNode('skcmsMenuList')->defaultValue(0)->end()
                                 ->arrayNode('listProperties')
                                     ->useAttributeAsKey('alias')
                                     ->prototype('array')

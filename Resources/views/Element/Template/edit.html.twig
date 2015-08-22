@@ -72,8 +72,20 @@
                   {{form_widget(form.template,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
               </div>
             </div>
+              {%endif%}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
-           
+           {%if form.menus is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.menus,null,{label_attr:{class:'control-label'} })}}
+                </div>
+
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.menus,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+            </div>
+            {%endif%}
+            {%if form.lists is defined%}
             <div class="control-group row">
                 <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
                 {{form_label(form.lists,null,{label_attr:{class:'control-label'} })}}
@@ -83,7 +95,40 @@
                   {{form_widget(form.lists,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
               </div>
             </div>
-            {%endif%}
+              {%endif%}
+              {%if form.minRoleAccess is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.minRoleAccess,null,{label_attr:{class:'control-label'} })}}
+                </div>
+
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.minRoleAccess,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+              
+              
+            </div>
+              {%endif%}
+              {%if form.redirectRoute is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.redirectRoute,null,{label_attr:{class:'control-label'} })}}
+                </div>
+
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.redirectRoute,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  
+              {{form_widget(form.forward,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' } })}}
+              {{form_label(form.forward,null,{label_attr:{class:'control-label'} })}}
+              </div>
+
+              
+            </div>
+              {%endif%}
+              
+            
             {%endif%}
             {%endblock%}
         </fieldset>

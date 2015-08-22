@@ -103,4 +103,18 @@ sk_admin_contactinfos:
     pattern: /contact-infos/{_locale}
     defaults: {_controller: SKCMSAdminBundle:ContactInfo:main}
     
+sk_admin_openingHours:
+    pattern: /opening-hours/{_locale}
+    defaults: {_controller: SKCMSAdminBundle:OpeningHours:main}
     
+    
+sk_admin_eshoplist:
+    pattern: /eshop/orders
+    defaults: {_controller: SKCMSAdminBundle:Eshop:list}
+sk_admin_eshopedit:
+    pattern: /eshop/order/{orderId}
+    defaults: {_controller: SKCMSAdminBundle:Eshop:edit}
+    
+sk_admin_deleteorder:
+    pattern: /eshop/order/delete/{orderId}
+    defaults: {_controller: SKCMSAdminBundle:Eshop:deleteOrder}
