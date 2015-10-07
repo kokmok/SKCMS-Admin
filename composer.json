@@ -1,6 +1,7 @@
 {
   "name": "skcms/admin-bundle",
 
+
 "type": "symfony-bundle",
 
 "description": "Symfony Admin Bundle by SOLID-kiss",
