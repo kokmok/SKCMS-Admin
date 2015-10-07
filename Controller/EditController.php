@@ -17,7 +17,7 @@ class EditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
        
         if ($id!==null)
         {
@@ -125,7 +125,7 @@ class EditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
         $entity = $repo->find($id);
         
         
@@ -150,7 +150,7 @@ class EditController extends Controller
         $entityParams = $entitiesParams[$entity];
         $em = $this->getDoctrine()->getManager();
         
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
        
         $entity = $repo->find($id,$locale);
         
@@ -181,7 +181,7 @@ class EditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
        
         $entity = $repo->find($id,$locale);
         

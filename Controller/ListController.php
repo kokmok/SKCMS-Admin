@@ -19,7 +19,7 @@ class ListController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
 //        $repo->setDefaultLocale($this->getRequest()->getLocale());
         
         $entities = $repo->findAll($this->getRequest()->getLocale());
@@ -48,7 +48,7 @@ class ListController extends Controller
         
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+        $repo = $em->getRepository($contactParams['messageEntity']['class']);
         
         $entities = $repo->findBy([],['date'=>'DESC']);
         

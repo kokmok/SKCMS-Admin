@@ -53,7 +53,7 @@ class AdminController extends Controller
         $contactParams = $modulesParams['contact'];
         if ($contactParams['enabled'] == true)
         {
-            $contactRepo = $this->getDoctrine()->getManager()->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+            $contactRepo = $this->getDoctrine()->getManager()->getRepository($contactParams['messageEntity']['class']);
             $contactMessages = $contactRepo->findBy([],['date'=>'DESC'],10);
         }
         else
@@ -94,7 +94,7 @@ class AdminController extends Controller
         {
             $contactParams = $modules['contact'];
             $em = $this->getDoctrine()->getManager();
-            $repo = $em->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+            $repo = $em->getRepository($contactParams['messageEntity']['class']);
 
             $entities = $repo->findBy(['status'=>  \SKCMS\ContactBundle\Entity\ContactMessage::STATUS_NEW]);
             $newContactMessageNumber = count($entities);

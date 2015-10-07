@@ -16,7 +16,7 @@ class ContactController extends Controller
         }
                 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+        $repo = $em->getRepository($contactParams['messageEntity']['class']);
         
         $entity = $repo->find($id);
         
@@ -99,7 +99,7 @@ class ContactController extends Controller
         
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+        $repo = $em->getRepository($contactParams['messageEntity']['class']);
         
         $entities = $repo->findBy([],['date'=>'ASC']);
         

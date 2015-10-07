@@ -74,7 +74,7 @@ class TopBarViewer
         {
             $contactParams = $modules['contact'];
             $em = $this->container->get('doctrine')->getManager();
-            $repo = $em->getRepository($contactParams['messageEntity']['bundle'].'Bundle:'.$contactParams['messageEntity']['name']);
+            $repo = $em->getRepository($contactParams['messageEntity']['class']);
 
             $contactMessages = $repo->findBy(['status'=>  \SKCMS\ContactBundle\Entity\ContactMessage::STATUS_NEW]);
             $newContactMessageNumber = count($contactMessages);

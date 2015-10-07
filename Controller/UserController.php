@@ -11,7 +11,7 @@ class UserController extends Controller
         $userParams = $this->getUserConfig();
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($userParams['userEntity']['bundle'].'Bundle:'.$userParams['userEntity']['name']);
+        $repo = $em->getRepository($userParams['userEntity']['class']);
        
         if ($id!==null)
         {
@@ -71,7 +71,7 @@ class UserController extends Controller
         $userParams = $this->getUserConfig();
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($userParams['userEntity']['bundle'].'Bundle:'.$userParams['userEntity']['name']);
+        $repo = $em->getRepository($userParams['userEntity']['class']);
         
         $entities = $repo->findBy([],['username'=>'ASC']);
         

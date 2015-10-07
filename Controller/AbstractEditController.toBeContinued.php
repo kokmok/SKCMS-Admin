@@ -134,7 +134,7 @@ abstract class AbstractEditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         
-        $repository = $entityParams['bundle'].'Bundle:'.$entity;
+        $repository = $entityParams['class'];
         $entityClass = $entityParams['class'];
         $formClass = $entityParams['form'];
         $formParams = $entityParams['formParams'];
@@ -152,7 +152,7 @@ abstract class AbstractEditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
         $entity = $repo->find($id);
         
         
@@ -177,7 +177,7 @@ abstract class AbstractEditController extends Controller
         $entityParams = $entitiesParams[$entity];
         $em = $this->getDoctrine()->getManager();
         
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
        
         $entity = $repo->find($id,$locale);
         
@@ -208,7 +208,7 @@ abstract class AbstractEditController extends Controller
         $entityParams = $entitiesParams[$entity];
         
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entity);
+        $repo = $em->getRepository($entityParams['class']);
        
         $entity = $repo->find($id,$locale);
         

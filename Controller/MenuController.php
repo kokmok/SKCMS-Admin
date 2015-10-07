@@ -67,7 +67,7 @@ class MenuController extends Controller
            
             if (array_key_exists( 'skcmsMenuList',$entityParams) && $entityParams['skcmsMenuList'])
             {
-                $repo = $em->getRepository($entityParams['bundle'].'Bundle:'.$entityName); 
+                $repo = $em->getRepository($entityParams['class']); 
                 $subEntities = $repo->findAll();
                 $entities[$entityName] = $subEntities;
             }
