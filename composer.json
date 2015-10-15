@@ -34,7 +34,7 @@
 
 "doctrine/doctrine-bundle":         "*",
 "stof/doctrine-extensions-bundle": "~1.1@dev",
-"egeloen/ckeditor-bundle": "dev-master",
+"egeloen/ckeditor-bundle": "dev-master@dev",
 "helios-ag/fm-elfinder-bundle": "~5"
 
 },
