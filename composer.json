@@ -44,7 +44,11 @@
 "psr-0": { "SKCMS\\AdminBundle":   "" }
 
 },
-
+"config" : {
+  "bin-dir": "bin",
+  "component-dir": "web/assets"
+  
+},
 "target-dir": "SKCMS/AdminBundle",
 
 "minimum-stability":   "dev"

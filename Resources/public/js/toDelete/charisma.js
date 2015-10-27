@@ -749,13 +749,13 @@ function lockedFormInput()
 
 function skcms_ckfinder_popup_input()
 {
-    $('.ckfinder_popup_image').next('input')
-        .change(
-            function()
-            {
-                $(this).prev('img').attr('src',$(this).val());
-            }
-        );
+//    $('.ckfinder_popup_image').next('input')
+//        .change(
+//            function()
+//            {
+//                $(this).prev('img').attr('src',$(this).val());
+//            }
+//        );
 }
 
 
