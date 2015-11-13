@@ -1,4 +1,4 @@
-{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
+c{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
 
 {#{%block adminContent%}#}
 
@@ -19,8 +19,11 @@
     <td>{{entity.date|date('d-m-Y')}}</td>
     <td>{{entity.user.email}}</td>
     <td>{{entity.feeHTVA}} €</td>
+    {%if entity.status is not null%}
     <td style="background:{{entity.status.color}};">{{entity.status.name}}</td>
-
+    {%else%}
+        <td></td>
+    {%endif%}
     <td class="center">
         <a class="btn btn-success" href="{{path('sk_admin_eshopedit',{orderId:entity.id})}}">
                 <i class="icon-zoom-in icon-white"></i>  

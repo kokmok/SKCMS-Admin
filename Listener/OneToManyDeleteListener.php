@@ -34,17 +34,21 @@ class OneToManyDeleteListener
                 
                 $newAssociated = call_user_method('get'.ucfirst($associationMappingKey),$entity);
                 
+                $changed = false;
                 foreach ($associated as $associatedEntity)
                 {
                     if (!$newAssociated->contains($associatedEntity))
                     {
-
+                        $changed = true;
                         $em->remove($associatedEntity);
                     }
                     
                 }
+                if ($changed)
+                {
+                    $em->flush();
+                }
                 
-                $em->flush();
 
 //                
             }
