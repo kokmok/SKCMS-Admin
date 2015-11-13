@@ -29,10 +29,12 @@
 
 {%endfor%}
     <td class="center">
-        <a class="btn btn-success" href="#">
+        {%if is_granted('ROLE_ALLOWED_TO_SWITCH')%}
+        <a class="btn btn-success" href="?_switch_user={{entity.username}}">
                 <i class="icon-zoom-in icon-white"></i>  
-                View                                            
+                Take control                                            
         </a>
+        {%endif%}
         <a class="btn btn-info" href="{{path('sk_admin_useredit',{id:entity.id})}}">
                 <i class="icon-edit icon-white"></i>  
                 Edit                                            
