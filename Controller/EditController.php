@@ -60,7 +60,18 @@ class EditController extends Controller
             $form = $this->createForm(new $entityParams['form'],$entity);
         }
         
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $superAdminElements = ['lists','menus','minRoleAccess','redirectRoute','forward'];
+            foreach ($superAdminElements as $superAdminElement)
+            {
+                if ($form->has($superAdminElement))
+                {
+                    $form->remove($superAdminElement);
+                }
+            }
         
+        }
         
         if ($request->getMethod() == 'POST') 
         {
