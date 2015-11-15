@@ -2,13 +2,19 @@
 
 {% block stylesheets %}
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
-    
-        {% stylesheets 'bundles/skcmsadmin/css/*.css' filter="cssrewrite" %}
-{#            <script type="text/javascript" src="{{ asset_url }}"></script>#}
-            <link href="{{ asset_url }}" rel="stylesheet">
-        {% endstylesheets %}
-{#	<!-- The styles -->#}
-{#	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">#}
+    <link href="{{asset('bundles/skcmsadmin/css/bootstrap-theme.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/chosen.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/colorpicker.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/jquery-ui-1.8.21.custom.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/noty_theme_default.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/topBar.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/topBarGrid.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/uniform.default.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/zbootstrap-datetimepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/zskcms.css')}}" rel="stylesheet">
+
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -23,7 +29,7 @@
 
 {% block body %}
         
-{#{{ render(controller('SKCMSAdminBundle:Admin:topNav', { })) }}#}
+
 <div class="container-fluid" id="main-admin">
     <div class="row">
         
@@ -39,16 +45,7 @@
                 </div>
                 {% endfor %}
             {% endfor %}
-           {# <div>
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#">Home</a> <span class="divider">/</span>
-                    </li>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                </ul>
-            </div>#}
+
         {%block adminContent%}{%endblock%}
         </div>
     </div>
