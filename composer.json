@@ -28,13 +28,13 @@
 
 "php": ">=5.3.2",
 
-"symfony/framework-bundle":         ">=2.3-dev",
+"symfony/framework-bundle":         ">=2.3",
 
 "twig/twig":                        "*",
 
 "doctrine/doctrine-bundle":         "*",
-"stof/doctrine-extensions-bundle": "~1.1@dev",
-"egeloen/ckeditor-bundle": "dev-master@dev",
+"stof/doctrine-extensions-bundle": "~1.2",
+"egeloen/ckeditor-bundle": "4.0.1",
 "helios-ag/fm-elfinder-bundle": "~5"
 
 },
