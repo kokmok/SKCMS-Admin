@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('skcms_admin');
-        
+
         $rootNode   ->children()
                     ->arrayNode('siteInfo')
                         ->children()
@@ -46,6 +46,7 @@ class Configuration implements ConfigurationInterface
                                 ->children()
                                     ->booleanNode('enabled')->defaultValue(false)->end()
                                 ->end()
+                            ->addDefaultsIfNotSet()
                             ->end()
                             //CONTACT
                             ->arrayNode('contact')
@@ -71,6 +72,7 @@ class Configuration implements ConfigurationInterface
                                         ->end()
                                     ->end()
                                 ->end()
+                                ->addDefaultsIfNotSet()
                             ->end()
                             //USER
                             ->arrayNode('user')
@@ -97,10 +99,11 @@ class Configuration implements ConfigurationInterface
                                         ->end()
                                     ->end()
                                 ->end()
+                                ->addDefaultsIfNotSet()
                             ->end()
                             //END USER
                         ->end()
-                        
+
                     ->end()
                     ->arrayNode('entities')
                         ->useAttributeAsKey('alias')

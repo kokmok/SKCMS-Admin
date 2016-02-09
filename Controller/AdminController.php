@@ -9,7 +9,7 @@ class AdminController extends Controller
     public function indexAction()
     {
 
-        
+
 
         $today = new \DateTime();
         $sessionRepo = $this->getDoctrine()->getManager()->getRepository('SKCMSTrackingBundle:Session');
@@ -60,14 +60,19 @@ class AdminController extends Controller
         {
             $contactMessages = [];
         }
-
-        $eshopParams = $modulesParams['eshop'];
-        if ($eshopParams['enabled'])
-        {
-            $orderRepo = $this->getDoctrine()->getManager()->getRepository(('SKCMSShopBundle:Order'));
-            $orders = $orderRepo->findBy(['conditionsAccepted'=>true],['date'=>'DESC'],10,0);
+        if(isset($modulesParams['eshop'])) {
+            $eshopParams = $modulesParams['eshop'];
+            $orders = null;
+            if ($eshopParams['enabled']) {
+                $orderRepo = $this->getDoctrine()->getManager()->getRepository(('SKCMSShopBundle:Order'));
+                $orders = $orderRepo->findBy(['conditionsAccepted' => true], ['date' => 'DESC'], 10, 0);
+            }
         }
-            
+        else{
+            $orders = null;
+            $eshopParams = ['enabled'=>false];
+        }
+
         return $this->render('SKCMSAdminBundle:Page:index.html.twig',['sessionByMonth'=>  array_reverse($sessionsByMonth),'lastMonthViews'=>$lastMonthViews,'totalLastMonthViews'=>$totalCount,'contactMessages'=>$contactMessages,'contactParams'=>$contactParams,'orders'=>$orders,'eshopParams'=>$eshopParams]);
     }
 

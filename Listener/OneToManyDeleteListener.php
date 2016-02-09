@@ -30,9 +30,9 @@ class OneToManyDeleteListener
                 
                 $repo = $em->getRepository($associationMappingDatas['targetEntity']);
                 $associated = $repo->findBy([$associationMappingDatas['mappedBy']=>$entity]);
-                
-                
-                $newAssociated = call_user_method('get'.ucfirst($associationMappingKey),$entity);
+
+
+                $newAssociated = call_user_func([$entity,'get'.ucfirst($associationMappingKey)]);
                 
                 $changed = false;
                 foreach ($associated as $associatedEntity)
