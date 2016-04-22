@@ -14,17 +14,22 @@ SK COLOR  #00DAFF
 
 /** Top Bar */
 i.fa{font-style: normal !important;}
-#sk-topBar {border-radius: 0;background:#222;margin-bottom:0;z-index:1100;padding:5px 0;position:absolute;top:0;width:100%;}
+/*#sk-topBar {border-radius: 0;background:#222;margin-bottom:0;z-index:1100;padding:5px 0;position:absolute;top:0;width:100%;}*/
+#sk-topBar {border-radius: 0;background:#222;margin-bottom:0;z-index:1100;padding:5px 0;position:fixed;top:10%;width:300px;right:-300px;}
+
 #sk-topBar + div,#sk-topBar + header,#sk-topBar + section {z-index: 1;position:relative;}
 #sk-topBar a{text-decoration: none !important;}
 
 #sk-topBarNav {list-style: none;margin:5px 0 0;padding:0;}
-#sk-topBarNav li{display:inline-block;padding:0 10px;}
+#sk-topBarNav li{display:block;padding:3px 10px;}
+#skMenuOpener {position:absolute;left:-40px;width:40px;height:40px;top:0;background:#222;font-size: 2em;}
+#skMenuOpener a{text-align: center;display: block;width:100%;color:#FFF;}
 .menuLink{color:#FFF !important;}
 .menuLink:hover{color:#00DAFF !important;}
 
 #userbox:hover, #userbox:focus, #userbox.focus {color: #00DAFF;}
-#userbox{color:#FFF ;display: block;padding: 5px 10px 0;text-align: right;display:block;width:100%;}
+#userbox{color:#FFF ;display: block;text-align: right;display:block;width:100%;}
+#userbox.btn{font-family: inherit !important;padding:0;font-size: inherit !important;font-weight: inherit !important;}
 .skGrey {color:#333 !important;}
 .sk-dropdown {position:relative;}
 .sk-dropdown-menu {background-clip: padding-box;background-color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);display: none;float: left;font-size: 14px;left: 0;list-style: outside none none;margin: 2px 0 0;min-width: 160px;padding: 5px 0;position: absolute;text-align: left;top: 100%;z-index: 1000;}
