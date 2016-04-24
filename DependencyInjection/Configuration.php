@@ -117,6 +117,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('type')->defaultValue('crud')->end()
                                 ->scalarNode('menuGroup')->end()
                                 ->scalarNode('skcmsMenuList')->defaultValue(0)->end()
+                                ->booleanNode('uniqueEntity')->defaultValue(false)->end()
                                 ->arrayNode('listProperties')
                                     ->useAttributeAsKey('alias')
                                     ->prototype('array')
