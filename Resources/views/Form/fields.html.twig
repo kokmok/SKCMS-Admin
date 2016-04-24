@@ -6,7 +6,14 @@
     </div>
     <input type="hidden" id="{{form.vars.id}}" name="{{form.vars.full_name}}" value="{{value}}" /><br/>
 {% endblock %}
-
+{% block skscms_date_widget %}
+    <div class="date form_date input-group" data-date="{{'now'|date('Y-m-d')}}" data-date-format="yyyy-dd-mm" data-link-field="{{form.vars.id}}">
+        <input class="form-control" size="16" type="text" value="{{value}}" readonly>
+        <span class="input-group-addon"><span class="fa fa-remove"></span></span>
+        <span class="input-group-addon"><span class="fa fa-th"></span></span>
+    </div>
+    <input type="hidden" id="{{form.vars.id}}" name="{{form.vars.full_name}}" value="{{value}}" /><br/>
+{% endblock %}
 {% block skscms_protecedinput_widget %}
 
 <input type="text" class="col-md-11 col-lg-11 col-sm-11 col-xs-11 skcms_disablable form-control" style="" readonly {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
