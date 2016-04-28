@@ -284,4 +284,6 @@ div.form-control {height:auto;}
     box-shadow: none;text-shadow: none;
 }
 .form-group .form-group {padding-left:25px;}
+
 .elfinderImg {width:200px;}
+.prototyped>.form-group {border-bottom:1px solid #ccc;}
