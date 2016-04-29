@@ -96,6 +96,30 @@
                             </div>
                         </div>
                     {%endif%}
+                    {%if form.seoTitle is defined%}
+                        <div class="control-group row">
+                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                                {{form_label(form.seoTitle,null,{label_attr:{class:'control-label'} })}}
+                            </div>
+
+                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                {{form_widget(form.seoTitle,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+                            </div>
+
+
+                        </div>
+                        <div class="control-group row">
+                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                                {{form_label(form.seoDescription,null,{label_attr:{class:'control-label'} })}}
+                            </div>
+
+                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                {{form_widget(form.seoDescription,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+                            </div>
+
+
+                        </div>
+                    {%endif%}
                     {%if form.minRoleAccess is defined%}
                         <div class="control-group row">
                             <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
