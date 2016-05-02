@@ -11,8 +11,8 @@
             </div>
             <div class="top-nav ">
                 <ul id="sk-topBarNav">
-                    <li class=""><a href="{{websitePath}}" class="menuLink"><i class="fa fa-eye"></i> view site</a></li>
-                    <li class="sk-dropdown" data-target="dropdown-create"><a href="#" data-toggle="dropdown" class="menuLink"><i class="fa fa-paint-brush"></i> Create</a>
+                    <li class=""><a href="{{websitePath}}" class="menuLink"><i class="fa fa-eye"></i> afficher le site</a></li>
+                    <li class="sk-dropdown" data-target="dropdown-create"><a href="#" data-toggle="dropdown" class="menuLink"><i class="fa fa-paint-brush"></i> Créer</a>
                         <ul class="sk-dropdown-menu" id="dropdown-create">
                             {#                                            {% for group in menuGroups%}#}
                             {# <li class="nav-header hidden-tablet">{{group.name}}</li>
@@ -32,7 +32,7 @@
                     </li>
 
                     {%if editPath is not null%}
-                        <li class=""><a href="{{editPath}}" class="menuLink"><i class="fa fa-edit"></i> Edit Entity</a></li>
+                        <li class=""><a href="{{editPath}}" class="menuLink"><i class="fa fa-edit"></i> Editer Entité</a></li>
                     {%endif%}
 
                     {%if modules.contact.enabled == true %}

@@ -10,7 +10,7 @@
     {% for listProperty in entityParams.listProperties%}
         <th style="width:100px;">{{listProperty.beautyName|title}}</th>
     {%endfor%}
-    <th>User</th>
+    <th>Utilisateur</th>
     <th>Mise à jour</th>
     <th>Brouillon</th>
     {{parent()}}
@@ -28,21 +28,21 @@
     {%endfor%}
     <td>{%if entity.userCreate%}{{entity.userCreate.username}}{%endif%}</td>
     <td>{{entity.updateDate|date('Y-m-d H:i:s')}}</td>
-    <td>{{entity.draft? 'Yes':'No'}}</td>
+    <td>{{entity.draft? 'Oui':'Non'}}</td>
     <td class="center">
         {%if  attribute(entity, 'slug') is defined and entity.slug is not null%}
             <a class="btn btn-success" href="{{entity|skEntityPath()}}" onclick="window.open(this.href);return false;">
                 <i class="icon-zoom-in icon-white"></i>
-                View
+                Afficher
             </a>
         {%endif%}
         <a class="btn btn-info" href="{{path('sk_admin_edit',{'entity':entityParams.name,id:entity.id})}}">
             <i class="icon-edit icon-white"></i>
-            Edit
+            Editer
         </a>
         <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_delete',{'entity':entityParams.name,id:entity.id})}}">
             <i class="icon-trash icon-white"></i>
-            Delete
+            Supprimer
         </a>
 
     </td>
