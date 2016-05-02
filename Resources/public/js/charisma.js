@@ -624,7 +624,7 @@ function uniqid(prefix, more_entropy) {
 
 function addPrototypeForm()
 {
-    $('.form-control[data-prototype]').each(function(){
+    $('div[data-prototype]').each(function(){
 
         $(this).removeClass('form-control').addClass('collection-control');
 

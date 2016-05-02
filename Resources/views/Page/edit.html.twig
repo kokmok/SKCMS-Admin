@@ -1,6 +1,11 @@
 {%extends "SKCMSAdminBundle:Element/Template:edit.html.twig"%}
     
-{%block header2 %}{{entityParams.beautyName}} : "<span class="">{{ entity }}</span>"{%endblock%}
+{%block header2 %}
+    {%  if entity.id is not null %}{{entityParams.beautyName}} : "<span class="">{{ entity }}</span>"
+    {% else %}
+        Ajouter {{entityParams.beautyName}}
+    {% endif %}
+{%endblock%}
 
 {%block legendEntityName%}Contenu{%endblock%}
    
