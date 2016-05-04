@@ -30,7 +30,7 @@ class EntityListController extends Controller
             $entity = new \SKCMS\CoreBundle\Entity\EntityList();
         }
         
-        $form = $this->createForm(new \SKCMS\CoreBundle\Form\EntityListType($this->container->getParameter('skcms_admin.entities')),$entity);
+        $form = $this->createForm(new \SKCMS\CoreBundle\Form\EntityListType($this->container->getParameter('skcms_admin.entities'),$this->container->getParameter('skcms_admin.modules')),$entity);
         
         
         $request = $this->get('request');

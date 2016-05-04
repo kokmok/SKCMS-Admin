@@ -1,64 +1,72 @@
 <!-- left menu starts -->
 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-12 main-menu-span">
-    <div class="nav-collapse sidebar-nav panel">
-        {%if modules.eshop.enabled%}
+        <div class="nav-collapse sidebar-nav panel">
+            {%if modules.eshop.enabled%}
             <ul class="nav nav-tabs nav-stacked main-menu">
-                <li class="nav-header hidden-tablet">Commandes</li>
-                <li><a class="ajax-link" href="{{path('sk_admin_eshoplist')}}"><i class="fa fa-euro"></i><span class="hidden-tablet"> Toutes les commandes</span></a></li>
+                    <li class="nav-header hidden-tablet">Commandes</li>
+                    <li><a class="ajax-link" href="{{path('sk_admin_eshoplist')}}"><i class="fa fa-euro"></i><span class="hidden-tablet"> Toutes les commandes</span></a></li>
 
 
             </ul>
-        {%endif%}
+            {%endif%}
+            
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                    {% for group in menuGroups%}
+                         <li class="nav-header hidden-tablet">{{group.name}}</li>
+                        {% for elementType in entititesType%}
+                            {% if elementType.menuGroup == group.id%}
+                                <li><a class="ajax-link" href="{{path('sk_admin_list',{'entity':elementType.name})}}"><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
+                            {%endif%}
+                        {%endfor%}
+                    {%endfor%}
+                       
+                        {#<li><a class="ajax-link" href="{{path('sk_admin_homepage')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+                        {% for elementType in entititesType%}
+                        <li><a class="ajax-link" href="{{path('sk_admin_list',{'entity':elementType.name})}}"><i class="icon-eye-open"></i><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
+                        {% endfor%}#}
+                </ul>
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li class="nav-header hidden-tablet">Informations Diverses</li>
+                        <li><a class="ajax-link" href="{{path('sk_admin_contactinfos')}}"><i class="fa fa-info"></i><span class="hidden-tablet"> Contact Informations</span></a></li>
+                        
+                            
+                </ul>
+                {%if modules.blog.enabled == true %}
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                            <li class="nav-header hidden-tablet">Blog</li>
+                             <li><a class="ajax-link" href="{{path('sk_admin_blogpostlist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Blog posts</span></a></li>-
+                             <li><a class="ajax-link" href="{{path('sk_admin_blogcategorylist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Blog categories</span></a></li>-
 
-        <ul class="nav nav-tabs nav-stacked main-menu">
-            {% for group in menuGroups%}
-                <li class="nav-header hidden-tablet">{{group.name}}</li>
-                {% for elementType in entititesType%}
-                    {% if elementType.menuGroup == group.id%}
-                        <li><a class="ajax-link" href="{{path('sk_admin_list',{'entity':elementType.name})}}"><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
-                    {%endif%}
-                {%endfor%}
-            {%endfor%}
+                </ul>
+                {%endif%}
+            {%if modules.contact.enabled == true %}
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                            <li class="nav-header hidden-tablet">Contact</li>
+                             <li><a class="ajax-link" href="{{path('sk_admin_contactlist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
 
-            {#<li><a class="ajax-link" href="{{path('sk_admin_homepage')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-            {% for elementType in entititesType%}
-            <li><a class="ajax-link" href="{{path('sk_admin_list',{'entity':elementType.name})}}"><i class="icon-eye-open"></i><span class="hidden-tablet"> {{elementType.beautyName|title}}</span></a></li>
-            {% endfor%}#}
-        </ul>
-        <ul class="nav nav-tabs nav-stacked main-menu">
-            <li class="nav-header hidden-tablet">Informations Diverses</li>
-            <li><a class="ajax-link" href="{{path('sk_admin_contactinfos')}}"><i class="fa fa-info"></i><span class="hidden-tablet"> Contact Informations</span></a></li>
+                </ul>
+                {%endif%}
+                {%if modules.user.enabled == true %}
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                             <li class="nav-header hidden-tablet">Utilisateurs</li>
+                             <li><a class="ajax-link" href="{{path('sk_admin_userlist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Liste des utilisateurs</span></a></li>
+                             <li><a class="ajax-link" href="{{path('sk_admin_invitationlist')}}"><span class="hidden-tablet"> Invitation list</span></a></li>
+                            
+                </ul>
+                {%endif%}
+                
 
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
 
-        </ul>
-        {%if modules.contact.enabled == true %}
-            <ul class="nav nav-tabs nav-stacked main-menu">
-                <li class="nav-header hidden-tablet">Contact</li>
-                <li><a class="ajax-link" href="{{path('sk_admin_contactlist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                    <li class="nav-header hidden-tablet">Super Admin</li>
+                    <li><a class="ajax-link" href="{{path('sk_admin_menulist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Menu</span></a></li>
+                    <li><a class="ajax-link" href="{{path('sk_admin_pagetemplatelist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Page Templates</span></a></li>
+                    <li><a class="ajax-link" href="{{path('sk_admin_entitylistlist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Entities List</span></a></li>
 
-            </ul>
-        {%endif%}
-        {%if modules.user.enabled == true %}
-            <ul class="nav nav-tabs nav-stacked main-menu">
-                <li class="nav-header hidden-tablet">Utilisateurs</li>
-                <li><a class="ajax-link" href="{{path('sk_admin_userlist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Liste des utilisateurs</span></a></li>
-                <li><a class="ajax-link" href="{{path('sk_admin_invitationlist')}}"><span class="hidden-tablet"> Invitation list</span></a></li>
-
-            </ul>
-        {%endif%}
-
-
-        {% if is_granted('ROLE_SUPER_ADMIN') %}
-
-            <ul class="nav nav-tabs nav-stacked main-menu">
-                <li class="nav-header hidden-tablet">Super Admin</li>
-                <li><a class="ajax-link" href="{{path('sk_admin_menulist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Menu</span></a></li>
-                <li><a class="ajax-link" href="{{path('sk_admin_pagetemplatelist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Page Templates</span></a></li>
-                <li><a class="ajax-link" href="{{path('sk_admin_entitylistlist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Entities List</span></a></li>
-
-            </ul>
-        {%endif%}
-        {#                <label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>#}
-    </div><!--/.well -->
+                </ul>
+                {%endif%}
+{#                <label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>#}
+        </div><!--/.well -->
 </div><!--/span-->
 <!-- left menu ends -->

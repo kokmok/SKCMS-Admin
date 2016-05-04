@@ -1,191 +1,191 @@
 {%extends "SKCMSAdminBundle:Element/Template:content.html.twig"%}
 {% form_theme form 'SKCMSAdminBundle:Element/Template:form-theme.html.twig' %}
-
+	
 {%block header2 %}{%endblock%}
 
 {%block headerRightLinks %}
     {% if entity is defined and entity.id is not null and siteinfo is defined%}
-        {%set route = app.request.attributes.get('_route')%}
-        {%set routeParams = app.request.attributes.get('_route_params')%}
-        <div class="box-icon pull-right">
-            {% for language in siteinfo.locales %}
-
-                {#{% if routeParams.locale is defined%}
-                    {%set rootLocale = 'locale'%}
-                    {% set requestLocale = routeParams.locale%}
-                {%else%}
-                    {%set rootLocale = 'locale'%}
-                    {% set requestLocale= routeParams.locale%}
-                {%endif%}#}
-                {%if routeParams._locale is defined %}
-
-
-                    {%if routeParams._locale != language or routeParams._locale~'_US' != language%}
-
-                        {% set routeParams = routeParams|merge({_locale: language}) %}
-                        {#    {{language}}{{routeParams._locale}}#}
-                        <a class="btn btn-round pink-btn margin-10" href="{{path(route,routeParams)}}">{{language|capitalize}}</a>
-                    {%endif%}
-                {%endif%}
-            {%endfor%}
-        </div>
+    {%set route = app.request.attributes.get('_route')%}
+    {%set routeParams = app.request.attributes.get('_route_params')%}
+    <div class="box-icon pull-right">
+    {% for language in siteinfo.locales %}
+    
+    {#{% if routeParams.locale is defined%}
+        {%set rootLocale = 'locale'%}
+        {% set requestLocale = routeParams.locale%}
+    {%else%}
+        {%set rootLocale = 'locale'%}
+        {% set requestLocale= routeParams.locale%}
+    {%endif%}#}
+    {%if routeParams._locale is defined %}
+        
+    
+    {%if routeParams._locale != language or routeParams._locale~'_US' != language%}
+        
+    {% set routeParams = routeParams|merge({_locale: language}) %}
+{#    {{language}}{{routeParams._locale}}#}
+         <a class="btn btn-round pink-btn margin-10" href="{{path(route,routeParams)}}">{{language|capitalize}}</a>
+    {%endif%}
+    {%endif%}
+    {%endfor%}
+    </div>
     {%endif%}
 {%endblock%}
 
 {%block boxContent%}
-    {{form_errors(form)}}
+{{form_errors(form)}}
     <form class="{#form-horizontal#}" method="post" {{ form_enctype(form) }} action="{%block formAction %}{%endblock%}">
-
+        
         <fieldset class="col-lg-3 col-md-3 col-xs-12 col-sm-3 col-md-push-9 col-lg-push-9 col-sm-push-9">
             {%block advanced%}
-                <legend>Avancé</legend>
-                {% if form.draft is defined%}
-                    <div class="control-group row">
-                        <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                            <label for="{{form.draft.vars.id}}" class="control-label"> {{form.draft.vars.name|title}} {{form_widget(form.draft,{attr:{class:'' }})}}</label>
-                        </div>
+            <legend>Avancé</legend>
+            {% if form.draft is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                    <label for="{{form.draft.vars.id}}" class="control-label"> {{form.draft.vars.name|title}} {{form_widget(form.draft,{attr:{class:'' }})}}</label>
+                </div>
+                
+                <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    {{form_widget(form.draft,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+                </div>
+            </div>
+            {%endif%}
+            {% if form.slug is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.slug,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                        <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                            {{form_widget(form.draft,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                        </div>
-                    </div>
-                {%endif%}
-                {% if form.slug is defined%}
-                    <div class="control-group row">
-                        <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                            {{form_label(form.slug,null,{label_attr:{class:'control-label'} })}}
-                        </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.slug,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+              
+            </div>
+            {%endif%}
+            {%if form.template is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.template,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                        <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                            {{form_widget(form.slug,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                        </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.template,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+            </div>
+              {%endif%}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+           {%if form.menus is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.menus,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                    </div>
-                {%endif%}
-                {%if form.template is defined%}
-                    <div class="control-group row">
-                        <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                            {{form_label(form.template,null,{label_attr:{class:'control-label'} })}}
-                        </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.menus,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+            </div>
+            {%endif%}
+            {%if form.lists is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.lists,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                        <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                            {{form_widget(form.template,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                        </div>
-                    </div>
-                {%endif%}
-                {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    {%if form.menus is defined%}
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.menus,null,{label_attr:{class:'control-label'} })}}
-                            </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.lists,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+            </div>
+              {%endif%}
+              {%if form.seoTitle is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.seoTitle,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.menus,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
-                        </div>
-                    {%endif%}
-                    {%if form.lists is defined%}
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.lists,null,{label_attr:{class:'control-label'} })}}
-                            </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.seoTitle,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+              
+              
+            </div>
+              <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.seoDescription,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.lists,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
-                        </div>
-                    {%endif%}
-                    {%if form.seoTitle is defined%}
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.seoTitle,null,{label_attr:{class:'control-label'} })}}
-                            </div>
-
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.seoTitle,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
-
-
-                        </div>
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.seoDescription,null,{label_attr:{class:'control-label'} })}}
-                            </div>
-
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.seoDescription,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
-
-
-                        </div>
-                    {%endif%}
-                    {%if form.minRoleAccess is defined%}
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.minRoleAccess,null,{label_attr:{class:'control-label'} })}}
-                            </div>
-
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.minRoleAccess,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.seoDescription,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
 
 
-                        </div>
-                    {%endif%}
-                    {%if form.redirectRoute is defined%}
-                        <div class="control-group row">
-                            <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
-                                {{form_label(form.redirectRoute,null,{label_attr:{class:'control-label'} })}}
-                            </div>
+            </div>
+              {%endif%}
+                {%if form.minRoleAccess is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.minRoleAccess,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                {{form_widget(form.redirectRoute,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
-                            </div>
-                            <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
-
-                                {{form_widget(form.forward,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' } })}}
-                                {{form_label(form.forward,null,{label_attr:{class:'control-label'} })}}
-                            </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.minRoleAccess,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
 
 
-                        </div>
-                    {%endif%}
+            </div>
+              {%endif%}
+              {%if form.redirectRoute is defined%}
+            <div class="control-group row">
+                <div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">
+                {{form_label(form.redirectRoute,null,{label_attr:{class:'control-label'} })}}
+                </div>
 
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  {{form_widget(form.redirectRoute,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}
+              </div>
+              <div class="controls col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  
+              {{form_widget(form.forward,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' } })}}
+              {{form_label(form.forward,null,{label_attr:{class:'control-label'} })}}
+              </div>
 
-                {%endif%}
+              
+            </div>
+              {%endif%}
+              
+            
+            {%endif%}
             {%endblock%}
         </fieldset>
-
-        <fieldset class="col-lg-9 col-md-9 col-xs-12 col-sm-9 col-md-pull-3 col-lg-pull-3 col-sm-pull-3">
+        
+      <fieldset class="col-lg-9 col-md-9 col-xs-12 col-sm-9 col-md-pull-3 col-lg-pull-3 col-sm-pull-3">
             <legend>{%block formLegend%}{%if entity.id is defined%}Edit{%else%}Create{%endif%} {%block legendEntityName%}{%endblock%}{%endblock%}</legend>
             {%block formContent%}
                 {{ form_rest(form) }}
-                {%for input in form.children%}
-                    {#{%if '__token' in input.vars.id %}#}
+            {%for input in form.children%}
+                {#{%if '__token' in input.vars.id %}#}
                     {{form_row(input,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12 form-control'}})}}
-                    {#{%elseif input.isRendered == false%}#}
-                    {#<div class="control-group row">#}
+                {#{%elseif input.isRendered == false%}#}
+                {#<div class="control-group row">#}
                     {#<div class="formLabel col-md-1 col-lg-1 col-sm-1 col-xs-12 align_right">#}
                     {#{{form_label(input,null,{label_attr:{class:'control-label'} })}}#}
                     {#</div>#}
 
-                    {#<div class="controls col-md-11 col-lg-11 col-sm-11 col-xs-12">#}
-                    {#                      {{input.vars.value}}#}
-                    {#{{form_widget(input,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#{%endif%}#}
-                {%endfor%}
+                  {#<div class="controls col-md-11 col-lg-11 col-sm-11 col-xs-12">#}
+{#                      {{input.vars.value}}#}
+                      {#{{form_widget(input,{attr:{class:'col-md-12 col-lg-12 col-sm-12 col-xs-12  form-control' }})}}#}
+                  {#</div>#}
+                {#</div>#}
+                {#{%endif%}#}
+            {%endfor%}
             {%endblock%}
             <div class="form-actions row  col-md-11 col-lg-11 col-sm-11 col-xs-12  col-md-offset-1 col-lg-offset-1 col-sm-offset-1 ">
                 {%block submitters %}
-                    <button type="submit" class="btn pink-btn">Save changes and back to list</button>
-                    <input type="submit" class="btn pink-btn" name="stay_here" value="Save changes and stay here" />
-                    <input type="submit" class="btn pink-btn" name="add_new" value="Save changes and create a new one" />
-                    <button type="reset" class="btn">Cancel</button>
-                {%endblock %}
+              <button type="submit" class="btn pink-btn">Save changes and back to list</button>
+              <input type="submit" class="btn pink-btn" name="stay_here" value="Save changes and stay here" />
+              <input type="submit" class="btn pink-btn" name="add_new" value="Save changes and create a new one" />
+              <button type="reset" class="btn">Cancel</button>
+              {%endblock %}
             </div>
-        </fieldset>
-    </form>
+      </fieldset>
+    </form>   
 {%endblock%}

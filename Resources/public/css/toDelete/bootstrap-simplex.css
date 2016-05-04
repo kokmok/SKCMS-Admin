@@ -4245,7 +4245,7 @@ h6,
 }
 .navbar .nav-collapse .nav li > a:hover {
   background-color: transparent;
-  color: #ff5164;
+  color: #00daff;
   /*text-decoration: underline;*/
 }
 div.subnav {
@@ -4324,8 +4324,8 @@ div.subnav .nav > li.open > a:hover {
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover {
-  background-color: #ff5164;
-  border-color: #ff5164;
+  background-color: #00daff;
+  border-color: #00daff;
   color:#fff;
   
 }

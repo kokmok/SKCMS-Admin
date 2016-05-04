@@ -13,6 +13,9 @@
     <link href="{{asset('bundles/skcmsadmin/css/topBarGrid.css')}}" rel="stylesheet">
     <link href="{{asset('bundles/skcmsadmin/css/uniform.default.css')}}" rel="stylesheet">
     <link href="{{asset('bundles/skcmsadmin/css/zbootstrap-datetimepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/bootstrap-tagsinput-typeahead.css')}}" rel="stylesheet">
+    <link href="{{asset('bundles/skcmsadmin/css/zbootstrap-datetimepicker.min.css')}}" rel="stylesheet">
     <link href="{{asset('bundles/skcmsadmin/css/zskcms.css')}}" rel="stylesheet">
 
 	<style type="text/css">
@@ -35,7 +38,7 @@
         
         {{ render(controller('SKCMSAdminBundle:Admin:leftNav', { })) }}
 {#        {%include 'SKCMSAdminBundle:Element/Nav:left-bar.html.twig' %} #}
-        <div id="content" class="col-md-10 col-lg-10 col-xs-12 col-sm-7">
+        <div id="content" class="col-md-10 col-lg-10 col-xs-12 col-sm-7 panel">
             
             {% for label, flashes in app.session.flashbag.all %}
                 {% for flash in flashes %}
@@ -110,6 +113,8 @@
 	<script src="{{asset('bundles/skcmsadmin/js/jquery.iphone.toggle.js')}}"></script>
 
 	<script src="{{asset('bundles/skcmsadmin/js/colorpicker.js')}}"></script>
+	<script src="{{asset('bundles/skcmsadmin/js/bootstrap-tagsinput.js')}}"></script>
+	<script src="{{asset('bundles/skcmsadmin/js/typeahead.bundle.js')}}"></script>
 	<script src="{{asset('bundles/skcmsadmin/js/charisma.js')}}"></script>
 	
 {% endblock %}	

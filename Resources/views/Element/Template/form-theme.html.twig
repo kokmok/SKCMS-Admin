@@ -6,6 +6,7 @@
     {% endif %}
     {{- parent() -}}
 {%- endblock form_widget_simple %}
+
 {%- block collection_widget -%}
     {% if prototype is defined %}
         {%- set attr = attr|merge({'data-prototype': form_row(prototype),'class': (attr.class|default('')~ ' prototyped')|trim }) -%}

@@ -41,7 +41,13 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->arrayNode('modules')
                         ->children()
-                            //ESHOP
+                            //Blog
+                            ->arrayNode('blog')
+                                ->children()
+                                    ->booleanNode('enabled')->defaultValue(false)->end()
+                                ->end()
+                            ->addDefaultsIfNotSet()
+                            ->end() //ESHOP
                             ->arrayNode('eshop')
                                 ->children()
                                     ->booleanNode('enabled')->defaultValue(false)->end()

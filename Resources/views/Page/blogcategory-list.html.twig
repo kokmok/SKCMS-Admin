@@ -1,0 +1,36 @@
+{%extends "SKCMSAdminBundle:Element/Template:admin-list.html.twig"%}
+
+{#{%block adminContent%}#}
+
+{#<a href="{{path('sk_admin_edit',{entity:entityParams.name})}}" class="btn btn-large btn-primary">Créer {{entityParams.beautyName}}</a>#}
+
+{%block header2 %}Blog categories {{parent()}}{%endblock%}
+
+{%block th %}
+<th>Date</th>
+<th>Nom</th>
+{#<th>Categorie</th>#}
+              
+{{parent()}}
+{%endblock%}
+
+{%block tr %}
+    <td>{{entity.creationDate|date('d/m/Y H:i:s')}}</td>
+    <td>{{entity.name}}</td>
+    {#<td>{{entity.category}}</td>#}
+
+    <td class="center">
+        <a class="btn btn-info" href="{{path('sk_admin_pagetemplateedit',{id:entity.id})}}">
+                <i class="icon-edit icon-white"></i>  
+                Edit                                            
+        </a>
+        <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_pagetemplatedelete',{id:entity.id})}}">
+                <i class="icon-trash icon-white"></i> 
+                Delete
+        </a>
+
+    </td>
+{%endblock%}
+
+{%block createLink %}{{path('sk_admin_blogcategoryedit')}}{%endblock%}
+

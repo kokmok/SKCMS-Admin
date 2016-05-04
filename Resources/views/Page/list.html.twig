@@ -7,23 +7,23 @@
 {%block header2 %}{{entityParams.beautyName}} {{parent()}}{%endblock%}
 
 {%block th %}
-    {% for listProperty in entityParams.listProperties%}
-        <th style="width:100px;">{{listProperty.beautyName|title}}</th>
-    {%endfor%}
+{% for listProperty in entityParams.listProperties%}
+    <th style="width:100px;">{{listProperty.beautyName|title}}</th>
+{%endfor%}
     <th>Utilisateur</th>
     <th>Mise à jour</th>
     <th>Brouillon</th>
-    {{parent()}}
+{{parent()}}
 {%endblock%}
 
 {%block tr %}
     {% for listProperty in entityParams.listProperties%}
         {% if listProperty.type=='string'%}
-            <td>{{attribute(entity,listProperty.dataName)}}</td>
+        <td>{{attribute(entity,listProperty.dataName)}}</td>
         {% elseif listProperty.type=='datetime' or listProperty.type=='date'%}
-            <td>{{attribute(entity,listProperty.dataName)|date('Y-m-d')}}</td>
+        <td>{{attribute(entity,listProperty.dataName)|date('Y-m-d')}}</td>
         {%elseif listProperty.type=='image'%}
-            <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" class="listImage"/></td>
+        <td><img src="{{asset(attribute(entity,listProperty.dataName))}}" alt="" class="listImage"/></td>
         {%endif%}
     {%endfor%}
     <td>{%if entity.userCreate%}{{entity.userCreate.username}}{%endif%}</td>
@@ -31,18 +31,18 @@
     <td>{{entity.draft? 'Oui':'Non'}}</td>
     <td class="center">
         {%if  attribute(entity, 'slug') is defined and entity.slug is not null%}
-            <a class="btn btn-success" href="{{entity|skEntityPath()}}" onclick="window.open(this.href);return false;">
-                <i class="icon-zoom-in icon-white"></i>
+        <a class="btn btn-success" href="{{entity|skEntityPath()}}" onclick="window.open(this.href);return false;">
+                <i class="icon-zoom-in icon-white"></i>  
                 Afficher
-            </a>
-        {%endif%}
+        </a>
+                {%endif%}
         <a class="btn btn-info" href="{{path('sk_admin_edit',{'entity':entityParams.name,id:entity.id})}}">
-            <i class="icon-edit icon-white"></i>
-            Editer
+                <i class="icon-edit icon-white"></i>  
+                Editer
         </a>
         <a class="btn btn-danger btn-setting" data-content="Voulez vous vraiment supprimer cette entité ?" data-title="Confirmation de suppression" data-confirm="Oui" href="{{path('sk_admin_delete',{'entity':entityParams.name,id:entity.id})}}">
-            <i class="icon-trash icon-white"></i>
-            Supprimer
+                <i class="icon-trash icon-white"></i> 
+                Supprimer
         </a>
 
     </td>
