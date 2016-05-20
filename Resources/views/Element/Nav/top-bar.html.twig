@@ -38,6 +38,14 @@
                     {%if modules.contact.enabled == true %}
                         <li class=""><a href="{{path('sk_admin_contactlist')}}" class="menuLink"><i class="fa fa-envelope"></i> Contact ({{newContactMessageNumber}})</a></li>
                     {%endif%}
+                    {%if modules.help.enabled == true %}
+                        {% if app.request.get('_route_params').entity is defined %}
+                            <li class=""><a href="{{path('skcms_help_front_entity',{entity: app.request.get('_route_params').entity})}}" class="menuLink modalTarget"><i class="fa fa-info-circle"></i> Besoin d'aide ?</a></li>
+                        {% else %}
+                            <li class=""><a href="{{path('skcms_help_front_general')}}" class="menuLink modalTarget"><i class="fa fa-info-circle"></i> Besoin d'aide ?</a></li>
+                        {% endif %}
+
+                    {%endif%}
                     {# <li>
                                                                     <form class="navbar-search pull-left">
                                                                             <input placeholder="Search" class="search-query span2" name="query" type="text">

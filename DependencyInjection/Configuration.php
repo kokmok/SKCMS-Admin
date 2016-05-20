@@ -46,6 +46,8 @@ class Configuration implements ConfigurationInterface
                                 ->children()
                                     ->booleanNode('enabled')->defaultValue(false)->end()
                                 ->end()
+                            ->addDefaultsIfNotSet()
+                            ->end()
                             //Blog
                             ->arrayNode('blog')
                                 ->children()

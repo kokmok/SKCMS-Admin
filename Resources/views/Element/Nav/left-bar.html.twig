@@ -63,7 +63,9 @@
                     <li><a class="ajax-link" href="{{path('sk_admin_menulist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Menu</span></a></li>
                     <li><a class="ajax-link" href="{{path('sk_admin_pagetemplatelist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Page Templates</span></a></li>
                     <li><a class="ajax-link" href="{{path('sk_admin_entitylistlist')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Entities List</span></a></li>
-
+                    {%if modules.help.enabled == true %}
+                        <li><a class="ajax-link" href="{{path('skcms_help_list')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Helpers</span></a></li>
+                    {%endif%}
                 </ul>
                 {%endif%}
 {#                <label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>#}
