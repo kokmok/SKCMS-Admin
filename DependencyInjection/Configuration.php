@@ -41,6 +41,11 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->arrayNode('modules')
                         ->children()
+                            //Help
+                            ->arrayNode('help')
+                                ->children()
+                                    ->booleanNode('enabled')->defaultValue(false)->end()
+                                ->end()
                             //Blog
                             ->arrayNode('blog')
                                 ->children()
