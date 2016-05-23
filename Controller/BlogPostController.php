@@ -30,7 +30,9 @@ class BlogPostController extends Controller
         $entity->setTranslatableLocale($locale);
         
         $form = $this->createForm(new BlogPostType(),$entity);
-        
+        if (!$this->getParameter('skcms_admin.modules')['blog']['categories']['enabled']){
+            $form->remove('category');
+        }
         
         $request = $this->get('request');
         
