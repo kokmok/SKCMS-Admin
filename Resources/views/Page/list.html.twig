@@ -33,7 +33,7 @@
         {%if  attribute(entity, 'slug') is defined and entity.slug is not null%}
         <a class="btn btn-success" href="{{entity|skEntityPath()}}" onclick="window.open(this.href);return false;">
                 <i class="icon-zoom-in icon-white"></i>  
-                Afficher
+                <Afficher></Afficher>
         </a>
                 {%endif%}
         <a class="btn btn-info" href="{{path('sk_admin_edit',{'entity':entityParams.name,id:entity.id})}}">

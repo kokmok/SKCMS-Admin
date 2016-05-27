@@ -10,6 +10,23 @@ use SKCMS\CoreBundle\Form\PageTemplateType;
 
 class BlogPostController extends Controller
 {
+
+    public function deleteAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('SKCMSBlogBundle:BlogPost');
+        $blogPost = $repo->find($id);
+
+        $this->getDoctrine()->getManager()->remove($blogPost);
+        $this->getDoctrine()->getManager()->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'blog post deleted'
+        );
+
+        $url = $this->generateUrl('sk_admin_blogpostlist');
+        return $this->redirect($url);
+    }
     public function editAction($id,$_locale)
     {
         $locale = $_locale;
@@ -33,6 +50,7 @@ class BlogPostController extends Controller
         if (!$this->getParameter('skcms_admin.modules')['blog']['categories']['enabled']){
             $form->remove('category');
         }
+        
         
         $request = $this->get('request');
         

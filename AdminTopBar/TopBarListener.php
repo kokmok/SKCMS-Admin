@@ -66,7 +66,7 @@ class TopBarListener {
         {
 //            //dump($this->route);
 //            die();
-            if (key_exists('slug', $this->routeParams) && !preg_match('#skblog_tag#',$this->route))
+            if (key_exists('slug', $this->routeParams) && !preg_match('#(skblog_tag)|(skblog_search)#',$this->route))
             {
                 $slug =$this->routeParams['slug'];
 

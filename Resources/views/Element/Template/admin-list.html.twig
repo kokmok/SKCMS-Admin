@@ -29,9 +29,9 @@
             {%if entityParams is defined and entityParams.sort is defined and entityParams.sort != "none"%}
                 <td class="sorterTd">
                     #<span class="sortValue">{{attribute(entity,entityParams.sort) }}</span>
-                    <a href="{{path('sk_admin_edit_push_up',app.request.attributes.get('_route_params')|merge({id:entity.id}))}}" class="sorterLink up"><i class="fa fa-arrow-up"></i></a> 
+                    <a href="{{path('sk_admin_edit_push_up',app.request.attributes.get('_route_params')|merge({id:entity.id}))}}" class="sorterLink up"><i class="fa fa-arrow-up"></i></a>
                     <a href="{{path('sk_admin_edit_pull_down',app.request.attributes.get('_route_params')|merge({id:entity.id}))}}" class="sorterLink down"><i class="fa fa-arrow-down"></i></a>
-                    
+
                 </td>
             {%endif%}
             {%block tr %}

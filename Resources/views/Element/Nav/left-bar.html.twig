@@ -34,9 +34,10 @@
                 {%if modules.blog.enabled == true %}
                 <ul class="nav nav-tabs nav-stacked main-menu">
                             <li class="nav-header hidden-tablet">Blog</li>
-                             <li><a class="ajax-link" href="{{path('sk_admin_blogpostlist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Blog posts</span></a></li>-
+                             <li><a class="ajax-link" href="{{path('sk_admin_blogpostlist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Blog posts</span></a></li>
+                            {% if modules.blog.categories.enabled == true %}
                              <li><a class="ajax-link" href="{{path('sk_admin_blogcategorylist')}}"><i class="fa fa-envelope"></i><span class="hidden-tablet"> Blog categories</span></a></li>-
-
+                            {% endif %}
                 </ul>
                 {%endif%}
             {%if modules.contact.enabled == true %}
@@ -66,6 +67,7 @@
                     {%if modules.help.enabled == true %}
                         <li><a class="ajax-link" href="{{path('skcms_help_list')}}"><i class="fa fa-user"></i><span class="hidden-tablet"> Helpers</span></a></li>
                     {%endif%}
+
                 </ul>
                 {%endif%}
 {#                <label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>#}
