@@ -33,7 +33,7 @@ class TopBarViewer
 //        if (!preg_match('#col-md#',$htmlContent)) //Bootsrap Fix
 //        {
         $bootstrap = $this->getBootsrap();
-        $htmlContent = preg_replace('#(<head [ a-zA-Z0-9\"\'=_-]*>)#','$1'.$bootstrap,$htmlContent);
+        $htmlContent = preg_replace('#(<head[ a-zA-Z0-9\"\'=_-]*>)#','$1'.$bootstrap,$htmlContent);
 
 //            $bootsrapJS = '<script type="text/javascript" src="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/js/bootstrap.min.js').'"></script>';
         $bootsrapJS = '<script type="text/javascript" src="'.$this->container->get('templating.helper.assets')->getUrl('bundles/skcmsadmin/js/topBar.js').'"></script>';
