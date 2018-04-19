@@ -3,7 +3,7 @@
 {%block header2 %}Messages Reçus{%endblock%}
 {%block headerRightLinks%}{%endblock%}
 {%block th %}
-    <th>Date</th>
+    <th data-order="desc">Date</th>
     {% for listProperty in entityParams.listProperties%}
         <th>{{listProperty.beautyName|title}}</th>
     {%endfor%}

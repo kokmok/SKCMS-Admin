@@ -266,8 +266,10 @@ function docReady(){
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
                             "sLengthMenu": "_MENU_ records per page"
-			}
-		} );
+			},
+            "order": $('th[data-order]').length ? [[ $('th[data-order]').index(), $('th[data-order]').attr('data-order') ]] : [[0,"asc"]]
+
+    } );
 	$('.btn-close').click(function(e){
 		e.preventDefault();
 		$(this).parent().parent().parent().fadeOut();
