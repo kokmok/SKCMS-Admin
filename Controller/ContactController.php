@@ -101,7 +101,7 @@ class ContactController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($contactParams['messageEntity']['class']);
         
-        $entities = $repo->findBy([],['date'=>'ASC']);
+        $entities = $repo->findBy([],['date'=>'DESC']);
         
         $entityParams = $contactParams['messageEntity'];
         
