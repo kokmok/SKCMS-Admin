@@ -7,6 +7,7 @@
 {%block header2 %}Blog posts {{parent()}}{%endblock%}
 
 {%block th %}
+<th>#</th>
 <th>Date</th>
 <th>Titre</th>
 <th>Categorie</th>
@@ -15,6 +16,7 @@
 {%endblock%}
 
 {%block tr %}
+    <td>{{entity.id}}</td>
     <td>{{entity.creationDate|date('d/m/Y H:i:s')}}</td>
     <td>{{entity.title}}</td>
     <td>{{entity.category}}</td>
