@@ -16,7 +16,7 @@
 {%endblock%}
 
 {%block tr %}
-    <td>{{entity.id}}</td>
+    <td  class="data-sort" data-sort="desc">{{entity.id}}</td>
     <td>{{entity.creationDate|date('d/m/Y H:i:s')}}</td>
     <td>{{entity.title}}</td>
     <td>{{entity.category}}</td>

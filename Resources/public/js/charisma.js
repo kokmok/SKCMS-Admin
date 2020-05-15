@@ -1,5 +1,5 @@
 $(document).ready(function(){
-        
+
         
         
                 
@@ -261,15 +261,22 @@ function docReady(){
 	
 
 	//datatable
-	$('.datatable').dataTable({
-			"sDom": "<'row'<'col-md-6 col-lg-6 col-sx-12 colsm-6'l><'col-md-6 col-lg-6 col-sx-12 colsm-6'f>r>t<'row'<'col-md-12 col-mlg-12 col-xs-12 col-sm-12'i><'col-md-12 col-mlg-12 col-xs-12 col-sm-12 center'p>>",
-			"sPaginationType": "bootstrap",
-			"oLanguage": {
-                            "sLengthMenu": "_MENU_ records per page"
-			},
-            "order": $('th[data-order]').length ? [[ $('th[data-order]').index(), $('th[data-order]').attr('data-order') ]] : [[0,"asc"]]
+    var sort = {};
+    if ($('.datatable').length && $('.datatable').find(".data-sort").length) {
+        sort = { "order": [[ $('.datatable').find(".data-sort").index(), $('.datatable').find(".data-sort").data('sort') ]]};
+    }
+    $('.datatable').dataTable(
+        Object.assign(
+            sort,
+            {
+                "sDom": "<'row'<'col-md-6 col-lg-6 col-sx-12 colsm-6'l><'col-md-6 col-lg-6 col-sx-12 colsm-6'f>r>t<'row'<'col-md-12 col-mlg-12 col-xs-12 col-sm-12'i><'col-md-12 col-mlg-12 col-xs-12 col-sm-12 center'p>>",
+                "sPaginationType": "bootstrap",
+                "oLanguage": {
+                    "sLengthMenu": "_MENU_ records per page"
+                }
+            }
+        ));
 
-    } );
 	$('.btn-close').click(function(e){
 		e.preventDefault();
 		$(this).parent().parent().parent().fadeOut();
